@@ -1,0 +1,136 @@
+Nepilsoņu vecumstruktūra Latvijā: 5-gadu histogramma
+-----
+
+[Uz sākumu](http://www.demografija.lv)
+
+* **Anotācija:** Dots pilsoņu un nepilsoņu skaits atkarībā no dzimšanas gada. 
+Izveidot histogrammu, kas attēlotu nepilsoņu skaitu vecuma intervālos, intervāla garums 5 gadi. 
+* **Pārskata šablons:** [age-histogram5.rmd](age-histogram5.rmd)
+* **Izmantotie dati:** [DzGads-VPd-2007_2014.csv](DzGads-VPd-2007_2014.csv)
+* **Iegūtā diagramma:** [age-histogram5.png](figure/age-histogram5.png)
+* **Saistītie raksti:** [Datu iegūšana no PDF](http://www.dudajevagatve.lv/java-eim/de/dataproc-demography-pdf-data.html); [Datu apkopošana vienā CSV](http://www.dudajevagatve.lv/java-eim/de/dataproc-demography-load.html);
+[Nepilsoņu vecumstruktūra Latvijā: 1-gada histogramma](age-histogram1.html)
+
+Histogramma ir joslu diagrammas paveids - 
+tā parāda, cik indivīdu ir katrā intervālā. Piederību intervālam nosaka 
+kāda skaitliska atribūta vērtība. Piemēram, ja populācija ir visi Latvijas nepilsoņi, bet atribūts - cilvēka vecums (skaitliska vērtība), tad histogrammā var attēlot, cik nepilsoņu ir katrā vecuma grupā. Līdzīgi varētu veidot histogrammu, kas parāda nepilsoņu deklarēto dzīvesvietu attālumu no Rīgas. Savukārt, nepilsoņu dzimumus histogrammas veidā attēlot nevar, jo dzimums ir kvalitatīvs nevis kvantitatīvs atribūts.
+
+Lai veidotu histogrammu, vispirms jānosaka intervāli jeb kārtošanas urnas (*sorting bins*). Šajā piemērā veidosim histogrammu, kurā iezīmēts, cik cilvēku ir vecumā no 0 līdz 4 gadiem, cik ir vecumā no 5 līdz 9 gadiem, cik no 10 līdz 14 gadiem, utt., visbeidzot - cik ir vecumā virs 100 gadiem (šis pēdējais intervāls ir garāks nekā citi - simtgadnieku vecumi ir robežās no 100 līdz aptuveni 110 gadiem). Gadu skaitu apaļojam uz leju - piemēram, cilvēks, kuram līdz 5 gadiem pietrūkst 1 diena joprojām skaitās 4 gadus vecs. Matemātiski pierakstot, visu iespējamo vecumu kopu $A$ pārklājam ar $n$ intervāliem: $A = I_1 \cup \ldots \cup I_{n}$. Mūsu gadījumā $n=21$ un visi intervāli (izņemot pēdējo) ir pusatvērti un 5 gadus gari:
+
+$$A \subseteq [0,5) \cup [5,10) \cup [10,15) \cup \ldots \cup [95,100) \cup [100,+\infty)$$
+
+Ja ar $X$ apzīmējam visu nepilsoņu kopu, tad pirms histogrammas zīmēšanas jāaprēķina, cik nepilsoņiem vecumi būs katrā intervālā. T.i. $i$-tais histogrammas stabiņš: $s_i = \left| \{ x \in X | age(x) \in I_i \} \right|$, kur $i \in \{1,\ldots,n\}$.
+
+
+### Tabula: Nepilsoņu skaits vecuma grupās gada sākumā
+
+```{r createtable, results='asis', echo=FALSE}
+# Set this path to the one that contains CSV data file
+setwd("/home/st/java-eim/da-101/www/age-structure/")
+df <- read.csv("DzGads-VPd-2007_2014.csv")
+
+getYear <- function(x) round(1970+as.numeric(as.Date(x))/365.25, digits=1)
+breaks <- 5 * 0:20
+getSlices <- function(reportDate) {
+    rYear <- getYear(reportDate)
+    cnt <- df[df$ReportDate == reportDate, c("Year", "LvNonCitizens")]
+    sapply(1:length(breaks), function(i) {
+        # add together those born in 1st and 2nd half of the year
+        hy1 <- sum(cnt[findInterval(rYear - cnt$Year - 1e-07, breaks) == i, 
+            "LvNonCitizens"])/2
+        hy2 <- sum(cnt[findInterval(rYear - cnt$Year - 0.5 - 1e-07, breaks) == 
+            i, "LvNonCitizens"])/2
+        hy1 + hy2
+    })
+}
+ages <- paste(breaks, breaks+4, sep="-")
+ages[length(ages)] <- "100+"
+dff <- data.frame(x = ages)
+dff$y2007 = getSlices("2007-01-01")
+dff$y2008 = getSlices("2008-01-01")
+dff$y2009 = getSlices("2009-01-01")
+dff$y2010 = getSlices("2010-01-01")
+dff$y2011 = getSlices("2011-01-01")
+dff$y2012 = getSlices("2012-01-01")
+dff$y2013 = getSlices("2013-01-01")
+dff$y2014 = getSlices("2014-01-01")
+cat("Age | 2007 | 2008 | 2009 | 2010 | 2011 | 2012 | 2013 | 2014", 
+    "---:|---:|---:|---:|---:|---:|---:|---:|---:|", sep="\n")
+cat(apply(dff, 1, function(X) paste(X, collapse=" | ")), sep = "\n")
+```
+
+### Animēta histogramma
+
+Sekojošā attēlā histogrammas mainās ik pēc 0.75 sekundēm - sākot no pārskata datuma "2007-01-01", "2007-07-01", "2008-01-01", ..., "2014-01-01" (pavisam kopā 15 histogrammas). Pēdējais attēls paliek 3.5 sekundes; pēc tam animācija atkārtojas. Animētā GIF veidošanai lietots rīks Imagemagick.
+
+```{r results='hide', warning=FALSE, error=FALSE, message=FALSE}
+# Set this path to the one that contains CSV data file
+setwd("/home/st/java-eim/da-101/www/age-structure/")
+
+if (!"animation" %in% installed.packages()) install.packages("animation")
+library(animation)
+
+getYear <- function(x) round(1970+as.numeric(as.Date(x))/365.25, digits=1)
+df <- read.csv("DzGads-VPd-2007_2014.csv")
+# histogram interval endpoints 
+breaks <- 5*0:20
+getSlices <- function(reportDate) {
+  rYear <- getYear(reportDate)
+  cnt <- df[df$ReportDate==reportDate,c("Year","LvNonCitizens")]
+  sapply(1:length(breaks), function(i) {
+    # add together those born in 1st and 2nd half of the year
+    hy1 <- sum(cnt[findInterval(rYear-cnt$Year- 1E-7,breaks)==i,
+                   "LvNonCitizens"])/2 
+    hy2 <- sum(cnt[findInterval(rYear-cnt$Year- 0.5 - 1E-7,breaks)==i,
+                   "LvNonCitizens"])/2
+    hy1 + hy2
+  })
+}
+
+
+dsets <- c("2007-01-01", "2007-07-01", "2008-01-01", "2008-07-01", 
+           "2009-01-01", "2009-07-01", "2010-01-01", "2010-07-01", 
+           "2011-01-01", "2011-07-01", "2012-01-01", "2012-07-01", 
+           "2013-01-01", "2013-07-01", "2014-01-01")
+
+saveGIF({
+for (dset in dsets) {
+#  png(paste0("age-histogram5-",dset,".png"), width=600, height=450)
+  slices <- getSlices(dset)
+  breakLabels <- breaks
+  breakLabels[breaks %% 2 == 1] <- ""
+  barplot(getSlices("2007-01-01"), col="white",
+          border=NA,
+          xlab="Age groups (0-4, 5-9, etc.)", 
+          ylab="Count of non-citizens")
+  barplot(slices, col="pink", names.arg=breakLabels, add=TRUE)
+  # Draw only horizontal grid lines
+  grid(nx=NA, ny=NULL)
+  # Place the date above the grid, center it on the 2nd bar
+  text(2, 38000, labels = dset, col="darkgray", 
+       font=2)
+  text(19, 38000, labels = as.character(round(sum(slices))), col="red", font=2)
+#  dev.off()
+}
+}, movie.name = "age-histogram5-anim.gif", 
+interval = c(rep(0.75,times=14),3.75), nmax = 30, ani.width = 600, 
+ani.height = 450)
+```
+
+![Animēta histogramma (5-gadu intervāli)](figure-static/age-histogram5-anim.gif)
+
+
+
+
+*****
+
+### Jautājumi
+1. Vai, izmantojot PMLP datus varētu iegūt histogrammu, kurā 
+vecumu intervāli ir īsāki nekā viens gads?
+2. Valodā R ir īpaša funkcija histogrammu zīmēšanai **hist()**. 
+Noskaidrot, vai ar šīs funkcijas palīdzību var histogrammas attēlu iegūt 
+īsāk un vienkāršāk nekā augšminētajā piemērā? 
+
+
+拉脱维亚“非公民”的年龄构成：五年的直方图 - Non-citizen age structure in Latvia: 5-year histogram  
+*This report is available under a [Creative Commons License](http://creativecommons.org/licenses/by/4.0/deed.en_US)*

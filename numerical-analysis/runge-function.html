@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Runges funkcijas interpolÄcija ar polinomiem</title>
+<title>Runges funkcijas interpolācija ar polinomiem</title>
 
 <script type="text/javascript">
 window.onload = function() {
@@ -204,30 +204,30 @@ hr {
 </head>
 
 <body>
-<h2>Runges funkcijas interpolÄcija ar polinomiem</h2>
+<h2>Runges funkcijas interpolācija ar polinomiem</h2>
 
-<p><a href="http://www.demografija.lv">Uz sÄkumu</a></p>
+<p><a href="http://www.demografija.lv">Uz sākumu</a></p>
 
 <ul>
-<li><strong>AnotÄcija:</strong> ZÄ«mÄ“jam Runges funkciju \(f(x) = \frac{1}{1+25x^2}, x \in [-1,1]\). PÄ“c tam tai veidojam interpolÄcijas polinomus, izmantojot vai nu vienmÄ“rÄ«gi sadalÄ«tus punktus nogrieznÄ« [-1,1], vai arÄ« ÄŒebiÅ¡eva polinoma saknes.</li>
-<li><strong>R scenÄrijs:</strong> <a href="runge-function.R">runge-function.R</a></li>
-<li><strong>Knitr Å¡ablons:</strong> <a href="runge-function.rmd">runge-function.rmd</a></li>
-<li>Ä€(A) Ä(a)</li>
-<li>ÄŒ(C) Ä(c)</li>
-<li>Ä’ Ä“</li>
-<li>Ä¢ Ä£</li>
-<li>Äª Ä«</li>
-<li>Ä¶ Ä·</li>
-<li>Ä» Ä¼</li>
-<li>Å… Å†</li>
-<li>ÅŒ Å</li>
-<li>Å– Å—</li>
-<li>Å  Å¡</li>
-<li>Åª Å«</li>
-<li>Å½ Å¾</li>
+<li><strong>Anotācija:</strong> Zīmējam Runges funkciju \(f(x) = \frac{1}{1+25x^2}, x \in [-1,1]\). Pēc tam tai veidojam interpolācijas polinomus, izmantojot vai nu vienmērīgi sadalītus punktus nogrieznī [-1,1], vai arī Čebiševa polinoma saknes.</li>
+<li><strong>R scenārijs:</strong> <a href="runge-function.R">runge-function.R</a></li>
+<li><strong>Knitr šablons:</strong> <a href="runge-function.rmd">runge-function.rmd</a></li>
+<li>Ā(A) ā(a)</li>
+<li>Č(C) č(c)</li>
+<li>Ē ē</li>
+<li>Ģ ģ</li>
+<li>Ī ī</li>
+<li>Ķ ķ</li>
+<li>Ļ ļ</li>
+<li>Ņ ņ</li>
+<li>Ō ō</li>
+<li>Ŗ ŗ</li>
+<li>Š š</li>
+<li>Ū ū</li>
+<li>Ž ž</li>
 </ul>
 
-<p>Runges fenomens funkcijai \(f\) nozÄ«mÄ“ to, ka interpolÄcijas polinomi nekonverÄ£Ä“ vienmÄ“rÄ«gi uz Å¡o funkciju - jo augstÄkas pakÄpes polinomi, jo interpolÄcija vairÄk atÅ¡Ä·iras no \(f\) kaut kÄdai argumenta vÄ“rtÄ«bai. Tipiski piemÄ“ri ir \(f(x) = \frac{1}{1+25x^2}\) un arÄ« \(f(x) = |x|\). </p>
+<p>Runges fenomens funkcijai \(f\) nozīmē to, ka interpolācijas polinomi nekonverģē vienmērīgi uz šo funkciju - jo augstākas pakāpes polinomi, jo interpolācija vairāk atšķiras no \(f\) kaut kādai argumenta vērtībai. Tipiski piemēri ir \(f(x) = \frac{1}{1+25x^2}\) un arī \(f(x) = |x|\). </p>
 
 <pre><code class="r">setwd(&quot;/home/st/demografija-lv/numerical-analysis/&quot;)
 
@@ -259,14 +259,14 @@ points(pts, sapply(pts, lagrange),
 
 <p><img src="figure/runge1-1.png" alt="plot of chunk runge1"> </p>
 
-<h2>InterpolÄcijas punkti - ÄŒebiÅ¡eva polinoma saknes</h2>
+<h2>Interpolācijas punkti - Čebiševa polinoma saknes</h2>
 
 <pre><code class="r">plot(xRange,runge(xRange),type=&quot;l&quot;,lwd=2, col=&quot;red&quot;,
      xlab=&quot;x&quot;,ylab=&quot;y&quot;, ylim=c(-0.1,1), asp=1)
 grid()
 
 N &lt;- 12
-# IegÅ«stam ÄŒebiÅ¡eva polinoma saknes
+# Iegūstam Čebiševa polinoma saknes
 r &lt;- chebyshev.t.recurrences(N, normalized=TRUE)
 mr &lt;- monic.polynomial.recurrences(r)
 pts &lt;- polynomial.roots(mr)[[N+1]]
