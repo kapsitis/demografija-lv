@@ -1,0 +1,77 @@
+Runges funkcijas interpolācija ar polinomiem
+----------
+
+[Uz sākumu](http://www.demografija.lv)
+
+* **Anotācija:** Zīmējam Runges funkciju $f(x) = \frac{1}{1+25x^2}, x \in [-1,1]$. Pēc tam tai veidojam interpolācijas polinomus, izmantojot vai nu vienmērīgi sadalītus punktus nogrieznī [-1,1], vai arī Čebiševa polinoma saknes.
+* **R scenārijs:** [runge-function.R](runge-function.R)
+* **Knitr šablons:** [runge-function.rmd](runge-function.rmd)
+* Ā(A) ā(a)
+* Č(C) č(c)
+* Ē ē
+* Ģ ģ
+* Ī ī
+* Ķ ķ
+* Ļ ļ
+* Ņ ņ
+* Ō ō
+* Ŗ ŗ
+* Š š
+* Ū ū
+* Ž ž
+
+
+Runges fenomens funkcijai $f$ nozīmē to, ka interpolācijas polinomi nekonverģē vienmērīgi uz šo funkciju - jo augstākas pakāpes polinomi, jo interpolācija vairāk atšķiras no $f$ kaut kādai argumenta vērtībai. Tipiski piemēri ir $f(x) = \frac{1}{1+25x^2}$ un arī $f(x) = |x|$. 
+
+```{r runge1, results='hide', warning=FALSE, error=FALSE, message=FALSE}
+setwd("/home/st/demografija-lv/numerical-analysis/")
+
+if (!"orthopolynom" %in% installed.packages()) install.packages("orthopolynom")
+library("orthopolynom")
+
+runge <- function(x) { 1/(1+25*x^2) }
+xRange <- seq(-1,1, by=0.01)
+plot(xRange,runge(xRange),type="l",lwd=2, col="red",
+     xlab="x",ylab="y", ylim=c(-0.1,1), asp=1)
+grid()
+
+N <- 12
+pts <- seq(-1,1,length.out=N)
+
+lagrange <- function(x) {
+  sum(sapply(1:N, function(i) { 
+    prod(sapply((1:N)[-i], function(j) {
+      (x - pts[j])/(pts[i] - pts[j])
+    }))*runge(pts[i])
+  }))
+}
+
+lines(xRange, sapply(xRange, lagrange),col="blue")
+
+points(pts, sapply(pts, lagrange), 
+       type="p", pch=21, bg="green")
+```
+
+## Interpolācijas punkti - Čebiševa polinoma saknes
+
+
+```{r runge2, results='hide', warning=FALSE, error=FALSE, message=FALSE}
+plot(xRange,runge(xRange),type="l",lwd=2, col="red",
+     xlab="x",ylab="y", ylim=c(-0.1,1), asp=1)
+grid()
+
+N <- 12
+# Iegūstam Čebiševa polinoma saknes
+r <- chebyshev.t.recurrences(N, normalized=TRUE)
+mr <- monic.polynomial.recurrences(r)
+pts <- polynomial.roots(mr)[[N+1]]
+
+lines(xRange, sapply(xRange, lagrange),col="blue")
+
+points(pts, sapply(pts, lagrange), 
+       type="p", pch=21, bg="green")
+```
+
+
+*This report is available under a [Creative Commons License](http://creativecommons.org/licenses/by/4.0/deed.en_US)*
+
