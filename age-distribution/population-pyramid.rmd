@@ -1,7 +1,7 @@
 Pilsoņu un nepilsoņu vecuma piramīda
 ----------
 
-[Uz sākumu](http://www.demografija.lv)
+[Uz sākumu](../index.html)
 
 * **Anotācija:** Dots pilsoņu un nepilsoņu skaits atkarībā no dzimšanas gada. 
 Izveidot vecuma piramīdu, kurā attēlots attiecīgi nepilsoņu un pilsoņu skaits. 

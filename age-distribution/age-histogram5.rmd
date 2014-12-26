@@ -1,7 +1,7 @@
 Nepilsoņu vecumstruktūra Latvijā: 5-gadu histogramma
 -----
 
-[Uz sākumu](http://www.demografija.lv)
+[Uz sākumu](../index.html)
 
 * **Anotācija:** Dots pilsoņu un nepilsoņu skaits atkarībā no dzimšanas gada. 
 Izveidot histogrammu, kas attēlotu nepilsoņu skaitu vecuma intervālos, intervāla garums 5 gadi. 
