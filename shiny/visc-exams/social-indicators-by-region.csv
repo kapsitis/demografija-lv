@@ -1,0 +1,125 @@
+"Num","municipality","region","jobless_ratio","income_tax_avg","schools","visc_code"
+1,"Viļānu novads","Latgale region",25.27%,249.33,3,122
+2,"Baltinavas novads","Latgale region",24.67%,276.82,1,14
+3,"Zilupes novads","Latgale region",23.64%,199.8,1,123
+4,"Kārsavas novads","Latgale region",22.51%,238.95,4,48
+5,"Ciblas novads","Latgale region",22.06%,236.24,3,23
+6,"Rēzeknes novads","Latgale region",21.95%,247.18,22,80
+7,"Dagdas novads","Latgale region",19.40%,229.52,8,24
+8,"Aglonas novads","Latgale region",18.49%,211.21,7,1
+9,"Viļakas novads","Latgale region",18.20%,242.67,7,121
+10,"Ludzas novads","Latgale region",17.96%,283.08,6,62
+11,"Rugāju novads","Latgale region",17.46%,203.24,2,92
+12,"Riebiņu novads","Latgale region",16.75%,209.42,6,82
+13,"Līvānu novads","Latgale region",16.64%,297.7,8,60
+14,"Krāslavas novads","Latgale region",16.19%,255.08,10,50
+15,"Vārkavas novads","Latgale region",15.67%,184.36,2,115
+16,"Balvu novads","Latgale region",15.53%,286.86,9,15
+17,"Rēzekne","Latgale region",13.67%,376.84,17,81
+18,"Vaiņodes novads","Kurzeme region",13.64%,294.03,2,110
+19,"Alūksnes novads","Vidzeme region",12.55%,310.9,15,7
+20,"Preiļu novads","Latgale region",12.49%,355.48,9,76
+21,"Skrundas novads","Kurzeme region",12.33%,280.42,5,103
+22,"Daugavpils novads","Latgale region",11.86%,253.87,19,25
+23,"Valkas novads","Vidzeme region",11.71%,335.86,6,111
+24,"Lubānas novads","Vidzeme region",11.23%,363.53,2,61
+25,"Madonas novads","Vidzeme region",11.20%,342,22,63
+26,"Cesvaines novads","Vidzeme region",11.13%,326.11,2,21
+27,"Kuldīgas novads","Kurzeme region",11.04%,304.59,14,53
+28,"Priekules novads","Kurzeme region",11.03%,296.69,5,77
+29,"Varakļānu novads","Vidzeme region",11.00%,258.28,3,114
+30,"Ērgļu novads","Vidzeme region",10.96%,296.18,4,31
+31,"Jaunjelgavas novads","Zemgale region",10.84%,363.07,4,39
+32,"Krustpils novads","Zemgale region",10.81%,300,6,52
+33,"Strenču novads","Vidzeme region",10.79%,327.42,1,106
+34,"Salas novads","Zemgale region",10.66%,351.93,3,96
+35,"Viesītes novads","Zemgale region",10.61%,318.41,3,120
+36,"Alsungas novads","Kurzeme region",10.34%,312.51,1,6
+37,"Limbažu novads","Riga region",10.27%,367.96,10,58
+38,"Neretas novads","Zemgale region",10.17%,303.91,3,68
+39,"Auces novads","Zemgale region",10.08%,346.25,2,10
+40,"Ilūkstes novads","Latgale region",10.06%,271.98,6,37
+41,"Aknīstes novads","Zemgale region",9.67%,353.65,3,4
+42,"Rucavas novads","Kurzeme region",9.61%,290.39,2,91
+43,"Tērvetes novads","Zemgale region",9.60%,371.07,4,108
+44,"Aizputes novads","Kurzeme region",9.49%,343.72,12,3
+45,"Rundāles novads","Zemgale region",9.49%,291.66,2,93
+46,"Jēkabpils","Zemgale region",9.48%,399.48,6,45
+47,"Dobeles novads","Zemgale region",9.42%,453.88,15,27
+48,"Pļaviņu novads","Zemgale region",9.41%,358.61,1,75
+49,"Jelgavas novads","Zemgale region",8.96%,377.97,22,42
+50,"Aizkraukles novads","Zemgale region",8.90%,488.24,5,2
+51,"Gulbenes novads","Vidzeme region",8.62%,344.45,21,34
+52,"Talsu novads","Kurzeme region",8.61%,374.78,16,107
+53,"Beverīnas novads","Vidzeme region",8.50%,407.99,2,17
+54,"Brocēnu novads","Kurzeme region",8.42%,367.3,4,18
+55,"Mazsalacas novads","Vidzeme region",8.40%,274.9,1,64
+56,"Saldus novads","Kurzeme region",8.34%,377.1,18,98
+57,"Jēkabpils novads","Zemgale region",8.27%,265.35,6,44
+58,"Kocēnu novads","Vidzeme region",8.22%,389.62,4,112
+59,"Alojas novads","Riga region",7.78%,279.02,4,5
+60,"Bauskas novads","Zemgale region",7.77%,403.21,13,16
+61,"Rūjienas novads","Vidzeme region",7.75%,327.7,2,94
+62,"Ventspils novads","Kurzeme region",7.69%,412.94,8,118
+63,"Daugavpils","Latgale region",7.64%,371.01,25,26
+64,"Inčukalna novads","Riga region",7.49%,507.09,2,38
+65,"Raunas novads","Vidzeme region",7.45%,295.59,3,79
+66,"Liepāja","Kurzeme region",7.38%,403.45,18,57
+67,"Vecpiebalgas novads","Vidzeme region",7.34%,318.86,4,116
+68,"Apes novads","Vidzeme region",7.28%,287.79,5,9
+69,"Kokneses novads","Zemgale region",7.25%,406.34,6,49
+70,"Naukšēnu novads","Vidzeme region",7.25%,383.51,2,67
+71,"Jaunpils novads","Riga region",7.16%,371.47,1,41
+72,"Skrīveru novads","Zemgale region",7.14%,427.3,1,102
+73,"Priekuļu novads","Vidzeme region",7.12%,420.76,7,78
+74,"Tukuma novads","Riga region",7.06%,412.74,12,109
+75,"Līgatnes novads","Vidzeme region",7.04%,384.88,1,59
+76,"Smiltenes novads","Vidzeme region",6.92%,413.99,9,104
+77,"Amatas novads","Vidzeme region",6.83%,362.98,6,8
+78,"Pārgaujas novads","Vidzeme region",6.79%,402.78,3,73
+79,"Nīcas novads","Kurzeme region",6.75%,415.6,1,69
+80,"Vecumnieku novads","Zemgale region",6.65%,389.51,5,117
+81,"Kandavas novads","Riga region",6.51%,317.63,7,47
+82,"Cēsu novads","Vidzeme region",6.50%,464.58,13,22
+83,"Jelgava","Zemgale region",6.50%,517.63,17,43
+84,"Pāvilostas novads","Kurzeme region",6.42%,317.31,2,74
+85,"Valmiera","Vidzeme region",6.31%,533.72,10,113
+86,"Salacgrīvas novads","Riga region",6.29%,400.14,3,95
+87,"Sējas novads","Riga region",6.17%,513.75,2,100
+88,"Ozolnieku novads","Zemgale region",6.13%,548.23,3,72
+89,"Durbes novads","Kurzeme region",6.08%,332.38,1,29
+90,"Ventspils","Kurzeme region",5.98%,581.25,13,119
+91,"Krimuldas novads","Riga region",5.95%,438.32,3,51
+92,"Grobiņas novads","Kurzeme region",5.80%,411.37,5,33
+93,"Jūrmala","Riga region",5.77%,578.6,15,46
+94,"Iecavas novads","Zemgale region",5.76%,488.22,3,35
+95,"Siguldas novads","Riga region",5.71%,577.75,6,101
+96,"Burtnieku novads","Vidzeme region",5.65%,391.41,4,19
+97,"Jaunpiebalgas novads","Vidzeme region",5.50%,309.03,1,40
+98,"Ķeguma novads","Riga region",5.39%,470.43,2,54
+99,"Salaspils novads","Riga region",5.25%,615.06,2,97
+100,"Olaines novads","Riga region",5.16%,572.01,3,71
+101,"Mālpils novads","Riga region",5.15%,454.34,5,65
+102,"Mērsraga novads","Kurzeme region",5.14%,437.71,0,124
+103,"Ogres novads","Riga region",4.95%,499.72,12,70
+104,"Rīga","Riga city",4.90%,610.67,162,83
+104,"Rīga","Riga city",4.90%,610.67,162,84
+104,"Rīga","Riga city",4.90%,610.67,162,85
+104,"Rīga","Riga city",4.90%,610.67,162,86
+104,"Rīga","Riga city",4.90%,610.67,162,87
+104,"Rīga","Riga city",4.90%,610.67,162,88
+105,"Engures novads","Riga region",4.79%,464.68,3,30
+106,"Lielvārdes novads","Riga region",4.60%,487.12,4,56
+107,"Ropažu novads","Riga region",4.40%,503.56,2,90
+108,"Dundagas novads","Kurzeme region",4.25%,326.76,2,28
+109,"Rojas novads","Kurzeme region",4.19%,382.62,2,89
+110,"Saulkrastu novads","Riga region",4.18%,555.49,2,99
+111,"Stopiņu novads","Riga region",4.07%,704.96,3,105
+112,"Babītes novads","Riga region",3.91%,795.79,1,12
+113,"Ķekavas novads","Riga region",3.63%,783.71,3,55
+114,"Garkalnes novads","Riga region",3.57%,850.34,3,32
+115,"Ikšķiles novads","Riga region",3.45%,810.59,2,36
+116,"Ādažu novads","Riga region",3.36%,766.56,2,11
+117,"Carnikavas novads","Riga region",3.32%,709.09,1,20
+118,"Baldones novads","Riga region",3.02%,567.51,2,13
+119,"Mārupes novads","Riga region",3.01%,936.85,2,66

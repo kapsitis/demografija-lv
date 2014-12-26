@@ -209,22 +209,18 @@ hr {
 <p><a href="../index.html">Uz sākumu</a></p>
 
 <ul>
-<li><strong>Anotācija:</strong> Dots pilsoņu un nepilsoņu skaits atkarībā no dzimšanas gada. 
-Izveidot histogrammu, kas attēlotu nepilsoņu skaitu vecuma intervālos, intervāla garums 1 gads. </li>
-<li><strong>Pārskata šablons:</strong> <a href="age-histogram5.rmd">age-histogram1.rmd</a></li>
-<li><strong>Datu pirmavots:</strong> <a href="http://www.pmlp.gov.lv/lv/sakums/statistika/iedzivotaju-registrs/">Iedzīvotāju reģistra statistika</a></li>
-<li><strong>Tabulveida dati:</strong> <a href="DzGads-VPd-2007_2014.csv">DzGads-VPd-2007_2014.csv</a></li>
-<li><strong>Iegūtā diagramma:</strong> <a href="figure-static/age-histogram1-anim.gif">age-histogram1-anim.gif</a></li>
-<li><strong>Saistītie raksti:</strong> <a href="population-pyramid.html">Pilsoņu-nepilsoņu vecuma piramīda</a></li>
+<li><strong>Anotācija:</strong> PMLP datu kopas (&quot;Latvijas iedzīvotāju sadalījums pēc dzimšanas gada un valstiskās piederības&quot;) vairākus gadus pēc kārtas parāda, cik katrā dzimšanas gadā ir cilvēku ar dažādu valstspiederības statusu. Šajā pārskatā apkoposim <em>nepilsoņu skaitu vecuma grupās</em> - jauna histogramma ik pēc 6 mēnešiem (2007.-2014.g.)</li>
+<li><strong>Šī pārskata šablons:</strong> <a href="age-histogram1.rmd">age-histogram1.rmd</a></li>
+<li><strong>Sākotnējie dati:</strong> <a href="http://www.pmlp.gov.lv/lv/sakums/statistika/iedzivotaju-registrs/">Iedzīvotāju reģistra statistika</a> - sk. &quot;Latvijas iedzīvotāju sadalījums pēc dzimšanas gada un valstiskās piederības&quot;.</li>
+<li><strong>Pārveidotie dati:</strong> <a href="DzGads-VPd-2007_2014.csv">DzGads-VPd-2007_2014.csv</a></li>
+<li><strong>Iegūtais attēls:</strong> <a href="animA.gif">1-gada histogramma</a></li>
 </ul>
 
-<p>Šajā histogrammā ikviens stabiņš apzīmē nepilsoņu skaitu attiecīgajā vecumā (gados) - savukārt visi nepilsoņi, kam ir 100 un vairāk gadu, ir apvienoti vienā stabiņā. Formāli runājot, mēs sadalām nenegatīvos skaitļus (visus iespējamos cilvēku vecumus gados) 101 savstarpēji nešķeļošos intervālos: \([0,1) \cup [1,2) \cup \ldots \cup [99,100) \cup [100,+\infty)\). Pēc tam saskaitām nepilsoņus, kuru vecumi atrodas katrā no šiem intervāliem. </p>
+<p>Šajā histogrammā ikviens stabiņš apzīmē nepilsoņu skaitu attiecīgajā vecumā (gados) - savukārt visi nepilsoņi, kam ir 100 un vairāk gadu, ir apvienoti vienā stabiņā. Formāli runājot, visus iespējamos cilvēku vecumus sadalām savstarpēji nešķeļošos intervālos: \([0,1) \cup [1,2) \cup \ldots \cup [99,100) \cup [100,+\infty)\). Pēc tam saskaitām nepilsoņus, kuru vecumi atrodas katrā no šiem intervāliem. </p>
 
-<p>Ja PMLP pārskata datums ir kāda gada pirmais janvāris, tad sadalījums intervālos atbilst nepilsoņu dzimšanas gadiem. Piemēram, ja izvēlamies datumu 2014-01-01, tad visi 2013.gadā dzimušie ir 0 gadu veci jeb pieder intervālam \([0,1)\), utt. Savukārt, ja PMLP pārskata datums ir kāda gada pirmais jūlijs, tad izdarām pieņēmumu, ka ikvienā gadā dzimušie ir aptuveni vienādi sadalīti pa mēnešiem. Piemēram, ja izvēlamies datumu 2013-07-01, tad puse no 2012.gadā dzimušajiem uz 2013.g. 1.jūliju jau bija 1 gadu veci (gada pirmajā pusē dzimušie), savukārt otra puse no 2012.gadā dzimušajiem jāuzskata par 0 gadus veciem. </p>
+<p>Pārskata datumā 2014-01-01 visi 2013.gadā dzimušie ir 0 gadu veci jeb pieder intervālam \([0,1)\), utt. Savukārt, ja PMLP pārskata datums ir kāda gada pirmais jūlijs, tad izdarām pieņēmumu, ka ikvienā gadā dzimušie ir aptuveni vienādi sadalīti pa mēnešiem. Piemēram, datumā 2013-07-01 - puse no 2012.gadā dzimušajiem bija 1 gadu veci (gada pirmajā pusē dzimušie), savukārt otra puse no 2012.gadā dzimušajiem ir 0 gadus veci.</p>
 
-<h3>Animēta histogramma</h3>
-
-<p>Sekojošā attēlā histogrammas mainās ik pēc 0.75 sekundēm - sākot no pārskata datuma &quot;2007-01-01&quot;, &quot;2007-07-01&quot;, &quot;2008-01-01&quot;, ..., &quot;2014-01-01&quot; (pavisam kopā 15 histogrammas). Pēdējais attēls paliek 3.75 sekundes; pēc tam animācija atkārtojas. Animētā GIF veidošanai lietots rīks Imagemagick. </p>
+<p>Animētā GIF veidošanai lietots rīks Imagemagick - konkrēti utilītprogramma &quot;convert&quot;</p>
 
 <pre><code class="r">if (!&quot;animation&quot; %in% installed.packages()) install.packages(&quot;animation&quot;)
 library(animation)

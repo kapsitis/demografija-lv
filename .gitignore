@@ -1,2 +1,6 @@
+.cache
 */.Rhistory
-*/.md
+*/*.md
+/bin
+/shiny/math/*
+

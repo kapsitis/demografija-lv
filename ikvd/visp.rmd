@@ -1,0 +1,150 @@
+IKVD Dati: Vispārējās izglītības programmu licencēšana
+----------
+
+[Uz sākumu](../index.html)
+
+## Pārskati
+### Speciālās izglītības programmas
+
+Speciālās izglītības programmas domātas bērniem ar dažāda veida traucējumiem. Lielais licenču skaits var nenozīmēt to, ka visā valstī komplektētu veselas klases ar šādiem bērniem. Nereti skolas piesakās 015.x programmām arī tādēļ, ka viņi apmāca vienu vai dažus šādus bērnus - tai skaitā integrēti ar citiem. Šādu programmu esamība var atspoguļot mācību iestādes vēlēšanos godprātīgi strādāt ar visiem audzēkņiem. Tās normālu mācību iestādi allaž nepadara par "specskolu".
+
+```{r createtable, results='asis', echo=FALSE}
+#setwd("/home/st/demografija-lv/ikvd/")
+generalEdu <- read.table(
+  file="VispIP_VISI_Derigie_2010-2014.csv", 
+  header=FALSE,
+  sep=",",
+  row.names=NULL,
+  col.names=c("num","founder","name","address",
+              "c1","c2","c3","c4","c5","c6",
+              "progName","licPre","licSuf","licFrom","licTo",
+              "notes","prevNum","status","actual","geogr")
+)
+
+
+
+#names <- generalEdu[generalEdu$c3 == 15,c(1,7:9)]
+
+# Values of c1 and c5
+# all, preschool.all, preschool.lv, preschool.ru
+# primary.all, primary.lv, primary.ru
+# secondary.all, secondary.lv, secondary.ru
+rowsByLevel <- list(c(-1,-1), c(0,-1), c(0,1),c(0,2),c(0,3),
+                    c(1,-1), c(1,1),c(1,2),c(1,3),
+                    c(3,-1), c(3,1),c(3,2),c(3,3))
+
+countLic <- function(c3,c4) {
+  specEdu <- generalEdu[generalEdu$c3 == c3,]
+  if (c4 != -1) {
+    specEdu <- specEdu[specEdu$c4 == c4,]
+  } 
+  res <- c()
+  for(idx in 1:length(rowsByLevel)) {
+    fc1 <- rowsByLevel[[idx]][1]
+    fc5 <- rowsByLevel[[idx]][2]    
+    specEduA <- specEdu
+    if (fc1 != -1) {
+      if (fc1 == 1) {
+        specEduA <- specEdu[specEdu$c1 == 1 | specEdu$c1 == 2,]
+      } else {
+        specEduA <- specEdu[specEdu$c1 == fc1,]
+      }
+    } 
+    specEduB <- specEduA
+    if (fc5 != -1) {
+      specEduB <- specEduA[specEduA$c5 == fc5,]
+    } 
+    res <- c(res,nrow(specEduB))
+  }
+  return(res)
+}
+
+nums <- data.frame(
+  rnames = c("Visas","BD", "BD.Lat.", "BD.Kr.", "BD.Citval.", "Pam", "Pam.Lat.", "Pam.Kr.", "Pam.Citval.",
+ "Vid", "Vid.Lat.", "Vid.Kr.", "Vid.Citval."),
+  c0151 = countLic(15,1), 
+  c0152 = countLic(15,2), 
+  c0153 = countLic(15,3), 
+  c0154 = countLic(15,4), 
+  c0155 = countLic(15,5), 
+  c0156 = countLic(15,6), 
+  c0157 = countLic(15,7), 
+  c0158 = countLic(15,8), 
+  c0159 = countLic(15,9),
+  c015 = countLic(15,-1)
+  )
+
+# | 11 | 12 | 13 | 14 | 18 | 19
+cat("Līm. | 15.1 | 15.2 | 15.3 | 15.4 | 15.5 | 15.6 | 15.7 | 15.8 | 15.9 | 15.Kopā ",    
+    "---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|", sep="\n")
+cat(apply(nums, 1, function(X) paste(X, collapse=" | ")), sep = "\n")
+```
+
+
+
+
+
+```{r speclicence, fig.path="", fig.cap="1.Attēls: Licenču skaits spec.izglītības programmām", results='hide', echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+#setwd("/Users/kapsitis/Desktop/statistics/izglitiba/")
+if (!"Cairo" %in% installed.packages()) install.packages("Cairo")
+if (!"ggplot2" %in% installed.packages()) install.packages("ggplot2")
+if (!"grid" %in% installed.packages()) install.packages("grid")
+if (!"plotrix" %in% installed.packages()) install.packages("plotrix")
+if (!"plyr" %in% installed.packages()) install.packages("plyr")
+if (!"RColorBrewer" %in% installed.packages()) install.packages("RColorBrewer")
+
+library(Cairo)
+library(ggplot2)
+library(grid)
+library(plotrix)
+library(plyr)
+library(RColorBrewer)
+
+behaviors <- rep(c("Visas",
+  "BD","BD.Lat","BD.Kr",
+  "Pam","Pam.Lat","Pam.Kr",
+  "Vsk","Vsk.Lat","Vsk.Kr"), each=9)
+
+beh <- factor(behaviors, levels = rev(c(
+  "BD.Lat","BD.Kr","BD",
+  "Pam.Lat","Pam.Kr","Pam",
+  "Vsk.Lat","Vsk.Kr","Vsk","Visas")))
+
+mm <- data.matrix(nums[,!(names(nums) %in% c("rnames","c015"))])
+mmt <- t(mm[c(1:4,6:8,10:12),])
+sizes <- as.vector(mmt)
+
+stages <- rep(
+  c("15.1 redzes","15.2 dzirdes","15.3 fiziskie",
+    "15.4 somatiskie", "15.5 valodas", "15.6 m\u0101c\u012Bbu",
+    "15.7 gar.vesel.", "15.8 gar.att\u012Bst.", "15.9 smagi gar."), times=10)
+
+colorList <- brewer.pal(9, "Set1")
+
+
+TTM <- data.frame(bb = behaviors, ss = sizes, traucejums =stages)
+
+##png(width = 960, height = 480, pointsize = 16, 
+##type = "cairo-png",
+##filename=paste0(getwd(),"/stuff.png"))
+
+
+##TTM$bbb <- factor(TTM$bb, as.character(d$Team1))
+##TTM$bbb <- reorder(TTM$bb, rev(c(1,2,3,4,5,6,7,8,9,10)))
+
+
+ggplot(data = TTM, aes(x = beh, y = ss, fill = traucejums)) + 
+ scale_fill_manual(values=colorList) + 
+    geom_bar(stat="identity") + 
+     theme_bw() +
+    coord_flip() + 
+    guides(fill = guide_legend(title="Trauc\u0113juma veids",
+  title.position="top", nrow=5)) +
+   theme(legend.position="bottom") + 
+   theme(legend.title = element_text(colour="black", size = 12, face = "bold")) +
+   ylab("Licen\u010Du skaits") + xlab("")
+##dev.off()
+```
+
+
+*This report is available under a [Creative Commons License](http://creativecommons.org/licenses/by/4.0/deed.en_US)*

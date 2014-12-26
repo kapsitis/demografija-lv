@@ -1,0 +1,160 @@
+IKVD Dati: Vispārējās izglītības programmu licencēšana
+----------
+
+[Uz sākumu](../index.html)
+
+**Anotācija:** IKVD (Izglītības kvalitātes valsts dienests) nodarbojas ar formālās izglītības iestāžu reģistrēšanu, ar izglītības programmu (izņemot augstskolu) licencēšanas un akreditācijas faktu uzturēšanu. Šis pārskats ļauj uzzināt, cik katra veida vispārējās izglītības programmu ir licencētas laika posmā no 2010.g. 1.janvāra līdz 2014.gada 30.novembrim. Programmas iedalīsim pēc to tipa (speciālās izglītības programmas bērniem ar dažāda veida traucējumiem, arī humanitārās, matemātikas/dabaszinātņu/tehnikas un profesionāli orientētās programmas), pēc līmeņa (pirmskola, pamatskola, vidusskola), pēc valodas (latviešu, krievu, cita), pēc piegādes veida (dienas, vakara, neklātienes/tālmācības). 
+
+## IKVD licencēšanas datu kopas skaidrojums
+
+Formālo izglītību var iedalīt vispārējā izglītībā un profesionālajā izglītībā. Vispārējo izglītību var tālāk iedalīt pirmskolas programmās, pamatizglītības programmās (reizēm izšķir arī pirmā posma pamatizglītību - 1.-4.kl. vai 1.-6.kl. un otrā posma pamatizglītību - 7.-9.kl.), kā arī vispārējās vidējās izglītības programmās (10.-12.kl.). Iestādes, kuras īsteno pirmskolas programmas reizēm sauc arī par bērnudārziem; pirmā posma pamatizglītību īstenojošās iestādes - par sākumskolām; otrā posma pamatizglītību - par pamatskolām; savukārt tās iestādes, kur var iegūt gan pamata, gan vidējo izglītību - par vidusskolām.
+
+Mācību iestādes un to piedāvātās izglītības programmas IKVD ietvaros veic 3 soļus, lai programmu no valsts viedokļa atzītu par labu:
+
+* **Mācību iestādes reģistrācija:** Šajā brīdī mācību iestāde piesaka savu juridisko adresi, pilnu nosaukumu, dibinātāju, kā arī atbildīgo personu par skolotāju pieņemšanu darbā kā arī savu vēlmi īstenot tādas vai citas mācību programmas. Mācību iestāde saņem reģistrācijas numuru un tiek pievienota [VIIS datubāzei](https://viis.lv/Pages/Institutions/Search.aspx). 
+* **Mācību programmu licencēšana:** Mācību iestāde paziņo par savu gatavību īstenot vienu vai vairākas mācību programmas; katrai programmai norāda, vai tā ir veidota pēc IZM/MK (vai cita labi zināma) parauga, vai arī viņi šo programmu veidojuši patstāvīgi. Rezultātā katra programma saņem licenci, ko arī var redzēt VIIS. Mācību iestādei ir jāpiesaka visas adreses, kurās notiks mācības. (Adresu vai mācību iestādes nosaukuma maiņa ir biežākais iemesls pārlicencēšanai.) Pašlaik vairums izsniegto licenču ir beztermiņa - licence ir nepieciešama jebkurai LR atzītai izglītības aktivitātei, bet tā nav pietiekams apliecinājums, ka attiecīgo programmu kāds tiešām var un grib mācīt. Ir iespējamas neaktīvas licences. Tas īpaši raksturīgi NV paspārnē īstenotajām bezdarbnieku apmācībām - ja var nokomplektēt grupu, tad izglītošanās pieteiktajā adresē notiek; pārējā laikā tur nekā nav.
+* **Mācību programmu akreditācija:** Akreditācija notiek periodiski (reizi 2-6 gados), piesaistot ekspertus pārliecinās, ka mācību programmas tiešām tiek īstenotas pienācīgā kvalitātes līmenī. Akreditācija vienlaikus nozīmē tiesības izsniegt apmācāmajiem valsts atzītus izglītības dokumentus. Dažas profesionālās izglītības programmas (it īpaši tās, kas apzīmē "pilnveidošanos" un nebeidzas ar profesionālās kvalifikācijas dokumenta izsniegšanu - piemēram, programmas angļu valodas, datorprasmes, vadības iemaņu utml. pilnveidošanai) arī var akreditēt, bet daudzi to nedara, jo tam nav iespaida uz mācību iestādes vai izglītojamo tālāko likteni. Šādas programmas nereti tiek tikai licencētas.
+
+### Kā tiek veidots mācību iestādes reģistrācijas numurs
+
+
+
+(Pielikums Izglītības un zinātnes ministrijas 2011.gada 6.janvāra rīkojumam Nr.17)
+
+#### Reģistrācijas numura 1.-2.zīme - republikas pilsēta vai plānošanas reģions (saskaņā ar Ministru kabineta 2009.gada 05.maija noteikumiem Nr.391 "Noteikumi par plānošanas reģionu teritorijām.")
+
+* **10** Jēkabpils
+* **25** Valmiera
+* **27** Daugavpils
+* **28** Jelgava
+* **29** Jūrmala
+* **30** Liepāja
+* **31** Rēzekne
+* **32** Ventspils
+* **33** Rīga
+* **34** Rīgas pilsētas Centra rajons (praksē Rīgas rajonu/priekšpilsētu kodus bieži aizstāj ar Rīgas kodu "33")
+* **35** Rīgas pilsētas Kurzemes rajons
+* **36** Rīgas pilsētas Latgales priekšpilsēta
+* **37** Rīgas pilsētas Vidzemes priekšpilsēta
+* **38** Rīgas pilsētas Zemgales priekšpilsēta
+* **39** Rīgas pilsētas Ziemeļu rajons
+* **41** Kurzemes reģions
+* **42** Latgales reģions
+* **43** Rīgas reģions
+* **44** Vidzemes reģions
+* **45** Zemgales reģions
+
+#### Reģistrācijas numura 3.-4.zīme - izglītības iestādes veids (tips)
+
+* **00** - **pirmsskolas izglītības iestāde** (praksē "00" nepiešķir, tā ir virskategorija priekš "01", "02", "03")
+* 01 - pirmsskolas izglītības iestāde
+* 02 - speciālā pirmsskolas iestāde
+* 03 - pirmsskolas izglītības konsultatīvais centrs
+* **10** - **vispārējās izglītības iestāde** (praksē "10" nepiešķir)
+* 11 - vispārizglītojošā sākumskola
+* 12 - vispārizglītojošā pamatskola
+* 13 - vispārizglītojošā vidusskola
+* 14 - vispārizglītojošā vakara (maiņu) vidusskola
+* 15 - neklātienes vidusskola
+* 16 - ģimnāzija
+* 17 - pedagoģiskās korekcijas iestāde
+* 18 - sociālās korekcijas iestāde
+* 19 - valsts ģimnāzija
+* **20** - **speciālās izglītības iestāde** (praksē "20" nepiešķir)
+* 21 - speciālā sākumskola
+* 22 - speciālā pamatskola
+* 23 - internātskola - rehabilitācijas centrs
+* 24 - internātskola - attīstības centrs
+* 25 - speciālā vidusskola
+* **30** - **profesionālās pamata un vidējās izglītības iestāde** (praksē "30" nepiešķir)
+* 31 - profesionālās vidējās izglītības iestāde
+* 32 - arodizglītības iestāde
+* 33 - profesionālās pamatizglītības iestāde
+* 34 - profesionālās izglītības kompetences centrs
+* **40** - **augstākās izglītības iestāde** (praksē "40" nepiešķir)
+* 41 - universitāte
+* 42 - universitātes tipa augstskola
+* 43 - augstskola
+* 44 - Latvijas augstskolas filiāle
+* 45 - ārvalstu augstskolas filiāle
+* 46 - akadēmija
+* 47 - koledža
+* 48 - koledžas filiāle
+* **50** - **bērnu un jauniešu interešu izglītības iestāde** (praksē "50" nepiešķir)
+* 51 - bērnu un jauniešu interešu izglītības iestāde (Piezīme: Pieaugušo izglītības kontekstā jēdzienu "interešu izglītība" nelieto - ir vienīgi "formālā" un "neformālā" izglītība)
+* **60** - **profesionālās tālākizglītības un pilnveides izglītības iestāde**
+* **70** - **profesionālās ievirzes izglītības iestāde**
+* 71 - sporta skola
+* 72 - deju skola
+* 73 - kultūras izglītības iestāde
+* 74 - mūzikas un mākslas skola
+* 75 - mākslas skola
+* 76 - mūzikas skola
+* **80** - **pieaugušo neformālās izglītības iestāde**
+
+#### Reģistrācijas numura 5.zīme - izglītības iestādes dibinātājs
+
+* 0 - Izglītības un zinātnes ministrija
+* 1 - Zemkopības ministrija
+* 2 - Labklājības ministrija
+* 3 - Kultūras ministrija
+* 4 - Aizsardzības ministrija
+* 5 - Iekšlietu ministrija
+* 6 - Tieslietu ministrija
+* 7 - Veselības ministrija
+* 8 - juridiska vai fiziska persona
+* 9 - pašvaldība
+
+#### Reģistrācijas numura 6.-10.zīme - numurs pēc kārtas
+
+## Mācību programmu licenču klasifikatori
+
+#### Programmu iedalījums pēc līmeņa (K1)
+* **K1=0** - pirmskolas programmas
+* **K1=1** - pamatizglītības pirmais posms (ne vairāk kā līdz 6.klasei)
+* **K1=2** - pamatizglītības otrais posms (7.-9.klase)
+* **K1=3** - vidējās izglītības programmas
+
+#### Programmu iedalījums pēc apakšlīmeņa (K2)
+* **K2=1** - visas parastās programmas
+* **K1.K2=2.3** - pamatizglītības otrais posms
+* **K1.K2=2.6** - izlīdzinošās izglītības programmas (vēsturiski ir bijušas, tagad tādas vairs nepiešķir)
+* **K1.K2=3.6** - profesionālajā izglītības sistēmā īstenojamās vidējās izglītības programmas
+
+#### Speciālā izglītība un programmas ar novirzieniem (K3.K4)
+* **K3.K4=015.1** - redzes traucējumi
+* **K3.K4=015.2** - dzirdes traucējumi 
+* **K3.K4=015.3** - fiziskās attīstības traucējumi
+* **K3.K4=015.4** - somatiskie traucējumi
+* **K3.K4=015.5** - valodas traucējumi
+* **K3.K4=015.6** - mācīšanās traucējumi (pirmskolas gadījumā - dažādi traucējumi)
+* **K3.K4=015.7** - garīgās veselības traucējumi
+* **K3.K4=015.8** - garīgās attīstības traucējumi
+* **K3.K4=015.9** - smagi garīgās un citas attīstības traucējumi
+* **K3=011** - parastas programmas bez novirzieniem
+* **K3=012** - humanitārās programmas
+* **K3=013** - matemātikas, dabaszinātņu un tehnikas programmas
+* **K3=014** - profesionāli orientētās programmas
+* **K3=018** - pedagoģiskās korekcijas programmas
+* **K3=019** - sociālās korekcijas programmas
+
+#### Programmas pēc valodas (K5)
+* **K5=1** - latviešu valodā
+* **K5=2** - krievu valodā
+* **K5=3** - citās valodās
+
+#### Programmas pēc piegādes veida (K6)
+* **K6=1** - dienas izglītība
+* **K6=2** - vakara izglītība
+* **K6=3** - neklātienes vai tālmācības izglītība
+
+## Bibliogrāfija
+
+* VIIS Informācijas sistēma: Iestāžu meklēšana - [https://viis.lv/Pages/Institutions/Search.aspx](https://viis.lv/Pages/Institutions/Search.aspx)
+* IKVD licenču dati MS Excel formātā - [http://www.ikvd.gov.lv/licenceto-izglitibas-programmu-registri.html](http://www.ikvd.gov.lv/licenceto-izglitibas-programmu-registri.html)
+* [MK Noteikumi Nr.990. 2008-12-02. "Noteikumi par Latvijas izglītības klasifikāciju"](http://likumi.lv/doc.php?id=184810)
+* [MK Noteikumi Nr.562. 2014-09-23. "Grozījumi Ministru kabineta 2008.gada 2.decembra noteikumos Nr.990"](http://likumi.lv/doc.php?id=269074)
+* [MK Noteikumi Nr.391. 2009-05-05. "Noteikumi par plānošanas reģionu teritorijām"](http://likumi.lv/doc.php?id=191670)
+
+普通教育的许可 - Licensing of General Education Programs  
+*This report is available under a [Creative Commons License](http://creativecommons.org/licenses/by/4.0/deed.en_US)*

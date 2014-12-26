@@ -1,15 +1,13 @@
-Pilsoņu un nepilsoņu vecuma piramīda
+Pilsoņu un nepilsoņu vecumu piramīda
 ----------
 
 [Uz sākumu](../index.html)
 
-* **Anotācija:** Dots pilsoņu un nepilsoņu skaits atkarībā no dzimšanas gada. 
-Izveidot vecuma piramīdu, kurā attēlots attiecīgi nepilsoņu un pilsoņu skaits. 
-* **Pārskata šablons:** [population-pyramid.rmd](age-histogram5.rmd)
-* **Datu pirmavots:** [Iedzīvotāju reģistra statistika](http://www.pmlp.gov.lv/lv/sakums/statistika/iedzivotaju-registrs/)
-* **Tabulveida dati:** [DzGads-VPd-2007_2014.csv](DzGads-VPd-2007_2014.csv)
-* **Iegūtā diagramma:** [pyramid.png](figure-static/pyramid.png)
-* **Saistītie raksti:** [Nepilsoņu vecumstruktūra Latvijā: 1-gada histogramma](age-histogram1.html)
+* **Anotācija:** Dots pilsoņu un nepilsoņu skaits atkarībā no dzimšanas gada. Izveidot vecumu piramīdu, kurā attēlots attiecīgi nepilsoņu un pilsoņu skaits. 
+* **Šī pārskata šablons:** [population-pyramid.rmd](population-pyramid.rmd)
+* **Sākotnējie dati:** [Iedzīvotāju reģistra statistika](http://www.pmlp.gov.lv/lv/sakums/statistika/iedzivotaju-registrs/) - sk. "Latvijas iedzīvotāju sadalījums pēc dzimšanas gada un valstiskās piederības".
+* **Pārveidotie dati:** [DzGads-VPd-2007_2014.csv](DzGads-VPd-2007_2014.csv)
+* **Iegūtais attēls:** [Vecumu piramīda](animC.gif)
 
 Šajā zīmējumā nepilsoņi un pilsoņi attēloti vienādā mērogā, tādēļ nepilsoņiem atbilstošās joslas izskatās diezgan īsas. Lai redzētu nepilsoņu vecuma struktūru atsevišķi, var skatīties [1-gada histogrammu](age-histogram1.html) vai [5-gadu histogrammu](age-histogram5.html).
 

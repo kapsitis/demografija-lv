@@ -3,22 +3,17 @@ Nepilsoņu vecumstruktūra Latvijā - 1-gada histogramma
 
 [Uz sākumu](../index.html)
 
-* **Anotācija:** Dots pilsoņu un nepilsoņu skaits atkarībā no dzimšanas gada. 
-Izveidot histogrammu, kas attēlotu nepilsoņu skaitu vecuma intervālos, intervāla garums 1 gads. 
-* **Pārskata šablons:** [age-histogram1.rmd](age-histogram5.rmd)
-* **Datu pirmavots:** [Iedzīvotāju reģistra statistika](http://www.pmlp.gov.lv/lv/sakums/statistika/iedzivotaju-registrs/)
-* **Tabulveida dati:** [DzGads-VPd-2007_2014.csv](DzGads-VPd-2007_2014.csv)
-* **Iegūtā diagramma:** [age-histogram1-anim.gif](figure-static/age-histogram1-anim.gif)
-* **Saistītie raksti:** [Pilsoņu-nepilsoņu vecuma piramīda](population-pyramid.html)
+* **Anotācija:** PMLP datu kopas ("Latvijas iedzīvotāju sadalījums pēc dzimšanas gada un valstiskās piederības") vairākus gadus pēc kārtas parāda, cik katrā dzimšanas gadā ir cilvēku ar dažādu valstspiederības statusu. Šajā pārskatā apkoposim *nepilsoņu skaitu vecuma grupās* - jauna histogramma ik pēc 6 mēnešiem (2007.-2014.g.)
+* **Šī pārskata šablons:** [age-histogram1.rmd](age-histogram1.rmd)
+* **Sākotnējie dati:** [Iedzīvotāju reģistra statistika](http://www.pmlp.gov.lv/lv/sakums/statistika/iedzivotaju-registrs/) - sk. "Latvijas iedzīvotāju sadalījums pēc dzimšanas gada un valstiskās piederības".
+* **Pārveidotie dati:** [DzGads-VPd-2007_2014.csv](DzGads-VPd-2007_2014.csv)
+* **Iegūtais attēls:** [1-gada histogramma](animA.gif)
 
-Šajā histogrammā ikviens stabiņš apzīmē nepilsoņu skaitu attiecīgajā vecumā (gados) - savukārt visi nepilsoņi, kam ir 100 un vairāk gadu, ir apvienoti vienā stabiņā. Formāli runājot, mēs sadalām nenegatīvos skaitļus (visus iespējamos cilvēku vecumus gados) 101 savstarpēji nešķeļošos intervālos: $[0,1) \cup [1,2) \cup \ldots \cup [99,100) \cup [100,+\infty)$. Pēc tam saskaitām nepilsoņus, kuru vecumi atrodas katrā no šiem intervāliem. 
+Šajā histogrammā ikviens stabiņš apzīmē nepilsoņu skaitu attiecīgajā vecumā (gados) - savukārt visi nepilsoņi, kam ir 100 un vairāk gadu, ir apvienoti vienā stabiņā. Formāli runājot, visus iespējamos cilvēku vecumus sadalām savstarpēji nešķeļošos intervālos: $[0,1) \cup [1,2) \cup \ldots \cup [99,100) \cup [100,+\infty)$. Pēc tam saskaitām nepilsoņus, kuru vecumi atrodas katrā no šiem intervāliem. 
 
-Ja PMLP pārskata datums ir kāda gada pirmais janvāris, tad sadalījums intervālos atbilst nepilsoņu dzimšanas gadiem. Piemēram, ja izvēlamies datumu 2014-01-01, tad visi 2013.gadā dzimušie ir 0 gadu veci jeb pieder intervālam $[0,1)$, utt. Savukārt, ja PMLP pārskata datums ir kāda gada pirmais jūlijs, tad izdarām pieņēmumu, ka ikvienā gadā dzimušie ir aptuveni vienādi sadalīti pa mēnešiem. Piemēram, ja izvēlamies datumu 2013-07-01, tad puse no 2012.gadā dzimušajiem uz 2013.g. 1.jūliju jau bija 1 gadu veci (gada pirmajā pusē dzimušie), savukārt otra puse no 2012.gadā dzimušajiem jāuzskata par 0 gadus veciem. 
+Pārskata datumā 2014-01-01 visi 2013.gadā dzimušie ir 0 gadu veci jeb pieder intervālam $[0,1)$, utt. Savukārt, ja PMLP pārskata datums ir kāda gada pirmais jūlijs, tad izdarām pieņēmumu, ka ikvienā gadā dzimušie ir aptuveni vienādi sadalīti pa mēnešiem. Piemēram, datumā 2013-07-01 - puse no 2012.gadā dzimušajiem bija 1 gadu veci (gada pirmajā pusē dzimušie), savukārt otra puse no 2012.gadā dzimušajiem ir 0 gadus veci.
 
-
-### Animēta histogramma
-
-Sekojošā attēlā histogrammas mainās ik pēc 0.75 sekundēm - sākot no pārskata datuma "2007-01-01", "2007-07-01", "2008-01-01", ..., "2014-01-01" (pavisam kopā 15 histogrammas). Pēdējais attēls paliek 3.75 sekundes; pēc tam animācija atkārtojas. Animētā GIF veidošanai lietots rīks Imagemagick. 
+Animētā GIF veidošanai lietots rīks Imagemagick - konkrēti utilītprogramma "convert"
 
 ```{r results='hide', warning=FALSE, error=FALSE, message=FALSE}
 if (!"animation" %in% installed.packages()) install.packages("animation")
