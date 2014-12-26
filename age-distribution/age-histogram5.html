@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Nepilsoņu vecumstruktūra Latvijā: 5-gadu histogramma</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h2>Nepilsoņu vecumstruktūra Latvijā: 5-gadu histogramma</h2>
+
+<p><a href="http://www.demografija.lv">Uz sākumu</a></p>
+
+<ul>
+<li><strong>Anotācija:</strong> Dots pilsoņu un nepilsoņu skaits atkarībā no dzimšanas gada. 
+Izveidot histogrammu, kas attēlotu nepilsoņu skaitu vecuma intervālos, intervāla garums 5 gadi. </li>
+<li><strong>Pārskata šablons:</strong> <a href="age-histogram5.rmd">age-histogram5.rmd</a></li>
+<li><strong>Izmantotie dati:</strong> <a href="DzGads-VPd-2007_2014.csv">DzGads-VPd-2007_2014.csv</a></li>
+<li><strong>Iegūtā diagramma:</strong> <a href="figure/age-histogram5.png">age-histogram5.png</a></li>
+<li><strong>Saistītie raksti:</strong> <a href="http://www.dudajevagatve.lv/java-eim/de/dataproc-demography-pdf-data.html">Datu iegūšana no PDF</a>; <a href="http://www.dudajevagatve.lv/java-eim/de/dataproc-demography-load.html">Datu apkopošana vienā CSV</a>;
+<a href="age-histogram1.html">Nepilsoņu vecumstruktūra Latvijā: 1-gada histogramma</a></li>
+</ul>
+
+<p>Histogramma ir joslu diagrammas paveids - 
+tā parāda, cik indivīdu ir katrā intervālā. Piederību intervālam nosaka 
+kāda skaitliska atribūta vērtība. Piemēram, ja populācija ir visi Latvijas nepilsoņi, bet atribūts - cilvēka vecums (skaitliska vērtība), tad histogrammā var attēlot, cik nepilsoņu ir katrā vecuma grupā. Līdzīgi varētu veidot histogrammu, kas parāda nepilsoņu deklarēto dzīvesvietu attālumu no Rīgas. Savukārt, nepilsoņu dzimumus histogrammas veidā attēlot nevar, jo dzimums ir kvalitatīvs nevis kvantitatīvs atribūts.</p>
+
+<p>Lai veidotu histogrammu, vispirms jānosaka intervāli jeb kārtošanas urnas (<em>sorting bins</em>). Šajā piemērā veidosim histogrammu, kurā iezīmēts, cik cilvēku ir vecumā no 0 līdz 4 gadiem, cik ir vecumā no 5 līdz 9 gadiem, cik no 10 līdz 14 gadiem, utt., visbeidzot - cik ir vecumā virs 100 gadiem (šis pēdējais intervāls ir garāks nekā citi - simtgadnieku vecumi ir robežās no 100 līdz aptuveni 110 gadiem). Gadu skaitu apaļojam uz leju - piemēram, cilvēks, kuram līdz 5 gadiem pietrūkst 1 diena joprojām skaitās 4 gadus vecs. Matemātiski pierakstot, visu iespējamo vecumu kopu \(A\) pārklājam ar \(n\) intervāliem: \(A = I_1 \cup \ldots \cup I_{n}\). Mūsu gadījumā \(n=21\) un visi intervāli (izņemot pēdējo) ir pusatvērti un 5 gadus gari:</p>
+
+<p>\[A \subseteq [0,5) \cup [5,10) \cup [10,15) \cup \ldots \cup [95,100) \cup [100,+\infty)\]</p>
+
+<p>Ja ar \(X\) apzīmējam visu nepilsoņu kopu, tad pirms histogrammas zīmēšanas jāaprēķina, cik nepilsoņiem vecumi būs katrā intervālā. T.i. \(i\)-tais histogrammas stabiņš: \(s_i = \left| \{ x \in X | age(x) \in I_i \} \right|\), kur \(i \in \{1,\ldots,n\}\).</p>
+
+<h3>Tabula: Nepilsoņu skaits vecuma grupās gada sākumā</h3>
+
+<table><thead>
+<tr>
+<th align="right">Age</th>
+<th align="right">2007</th>
+<th align="right">2008</th>
+<th align="right">2009</th>
+<th align="right">2010</th>
+<th align="right">2011</th>
+<th align="right">2012</th>
+<th align="right">2013</th>
+<th align="right">2014</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="right">0-4</td>
+<td align="right">4402</td>
+<td align="right">3988</td>
+<td align="right">3687</td>
+<td align="right">3371</td>
+<td align="right">2999</td>
+<td align="right">2500</td>
+<td align="right">2007</td>
+<td align="right">1563</td>
+</tr>
+<tr>
+<td align="right">5-9</td>
+<td align="right">4938</td>
+<td align="right">4474</td>
+<td align="right">4190</td>
+<td align="right">3924</td>
+<td align="right">3552</td>
+<td align="right">3250</td>
+<td align="right">2915</td>
+<td align="right">2620</td>
+</tr>
+<tr>
+<td align="right">10-14</td>
+<td align="right">6894</td>
+<td align="right">5508</td>
+<td align="right">4866</td>
+<td align="right">4424</td>
+<td align="right">4113</td>
+<td align="right">3736</td>
+<td align="right">3368</td>
+<td align="right">3051</td>
+</tr>
+<tr>
+<td align="right">15-19</td>
+<td align="right">16736</td>
+<td align="right">13229</td>
+<td align="right">10489</td>
+<td align="right">8257</td>
+<td align="right">6183</td>
+<td align="right">4660</td>
+<td align="right">3683</td>
+<td align="right">3145</td>
+</tr>
+<tr>
+<td align="right">20-24</td>
+<td align="right">18625</td>
+<td align="right">16904</td>
+<td align="right">15502</td>
+<td align="right">14187</td>
+<td align="right">12721</td>
+<td align="right">10845</td>
+<td align="right">8887</td>
+<td align="right">7011</td>
+</tr>
+<tr>
+<td align="right">25-29</td>
+<td align="right">20232</td>
+<td align="right">18592</td>
+<td align="right">17667</td>
+<td align="right">16540</td>
+<td align="right">15223</td>
+<td align="right">14017</td>
+<td align="right">12943</td>
+<td align="right">11723</td>
+</tr>
+<tr>
+<td align="right">30-34</td>
+<td align="right">21752</td>
+<td align="right">20531</td>
+<td align="right">19913</td>
+<td align="right">18983</td>
+<td align="right">17971</td>
+<td align="right">17028</td>
+<td align="right">15781</td>
+<td align="right">14734</td>
+</tr>
+<tr>
+<td align="right">35-39</td>
+<td align="right">23557</td>
+<td align="right">22257</td>
+<td align="right">21365</td>
+<td align="right">20873</td>
+<td align="right">20242</td>
+<td align="right">19214</td>
+<td align="right">18248</td>
+<td align="right">17652</td>
+</tr>
+<tr>
+<td align="right">40-44</td>
+<td align="right">31917</td>
+<td align="right">28698</td>
+<td align="right">26185</td>
+<td align="right">24051</td>
+<td align="right">22415</td>
+<td align="right">21165</td>
+<td align="right">20283</td>
+<td align="right">19331</td>
+</tr>
+<tr>
+<td align="right">45-49</td>
+<td align="right">40546</td>
+<td align="right">38561</td>
+<td align="right">36298</td>
+<td align="right">33980</td>
+<td align="right">31137</td>
+<td align="right">28563</td>
+<td align="right">25958</td>
+<td align="right">23757</td>
+</tr>
+<tr>
+<td align="right">50-54</td>
+<td align="right">40586</td>
+<td align="right">39437</td>
+<td align="right">39131</td>
+<td align="right">38105</td>
+<td align="right">36742</td>
+<td align="right">35614</td>
+<td align="right">33966</td>
+<td align="right">31757</td>
+</tr>
+<tr>
+<td align="right">55-59</td>
+<td align="right">39545</td>
+<td align="right">38816</td>
+<td align="right">37530</td>
+<td align="right">36182</td>
+<td align="right">34215</td>
+<td align="right">32583</td>
+<td align="right">31118</td>
+<td align="right">29919</td>
+</tr>
+<tr>
+<td align="right">60-64</td>
+<td align="right">22620</td>
+<td align="right">24388</td>
+<td align="right">27468</td>
+<td align="right">30693</td>
+<td align="right">32065</td>
+<td align="right">32481</td>
+<td align="right">31838</td>
+<td align="right">30360</td>
+</tr>
+<tr>
+<td align="right">65-69</td>
+<td align="right">34092</td>
+<td align="right">29768</td>
+<td align="right">25292</td>
+<td align="right">21605</td>
+<td align="right">18740</td>
+<td align="right">18129</td>
+<td align="right">19892</td>
+<td align="right">22661</td>
+</tr>
+<tr>
+<td align="right">70-74</td>
+<td align="right">24014</td>
+<td align="right">24950</td>
+<td align="right">26153</td>
+<td align="right">27418</td>
+<td align="right">27118</td>
+<td align="right">26446</td>
+<td align="right">23552</td>
+<td align="right">20197</td>
+</tr>
+<tr>
+<td align="right">75-79</td>
+<td align="right">21880</td>
+<td align="right">20862</td>
+<td align="right">19551</td>
+<td align="right">18221</td>
+<td align="right">17326</td>
+<td align="right">17670</td>
+<td align="right">18765</td>
+<td align="right">19823</td>
+</tr>
+<tr>
+<td align="right">80-84</td>
+<td align="right">13964</td>
+<td align="right">14432</td>
+<td align="right">14744</td>
+<td align="right">14748</td>
+<td align="right">14750</td>
+<td align="right">14311</td>
+<td align="right">13983</td>
+<td align="right">12886</td>
+</tr>
+<tr>
+<td align="right">85-89</td>
+<td align="right">4698</td>
+<td align="right">5229</td>
+<td align="right">5767</td>
+<td align="right">6420</td>
+<td align="right">6983</td>
+<td align="right">7542</td>
+<td align="right">7986</td>
+<td align="right">7971</td>
+</tr>
+<tr>
+<td align="right">90-94</td>
+<td align="right">1472</td>
+<td align="right">1383</td>
+<td align="right">1538</td>
+<td align="right">1563</td>
+<td align="right">1656</td>
+<td align="right">1871</td>
+<td align="right">2141</td>
+<td align="right">2250</td>
+</tr>
+<tr>
+<td align="right">95-99</td>
+<td align="right">290</td>
+<td align="right">356</td>
+<td align="right">406</td>
+<td align="right">471</td>
+<td align="right">486</td>
+<td align="right">458</td>
+<td align="right">432</td>
+<td align="right">387</td>
+</tr>
+<tr>
+<td align="right">100+</td>
+<td align="right">56</td>
+<td align="right">58</td>
+<td align="right">69</td>
+<td align="right">79</td>
+<td align="right">98</td>
+<td align="right">106</td>
+<td align="right">137</td>
+<td align="right">78</td>
+</tr>
+</tbody></table>
+
+<h3>Animēta histogramma</h3>
+
+<p>Sekojošā attēlā histogrammas mainās ik pēc 0.75 sekundēm - sākot no pārskata datuma &quot;2007-01-01&quot;, &quot;2007-07-01&quot;, &quot;2008-01-01&quot;, ..., &quot;2014-01-01&quot; (pavisam kopā 15 histogrammas). Pēdējais attēls paliek 3.5 sekundes; pēc tam animācija atkārtojas. Animētā GIF veidošanai lietots rīks Imagemagick.</p>
+
+<pre><code class="r">if (!&quot;animation&quot; %in% installed.packages()) install.packages(&quot;animation&quot;)
+library(animation)
+
+getYear &lt;- function(x) round(1970+as.numeric(as.Date(x))/365.25, digits=1)
+df &lt;- read.csv(&quot;DzGads-VPd-2007_2014.csv&quot;)
+# histogram interval endpoints 
+breaks &lt;- 5*0:20
+getSlices &lt;- function(reportDate) {
+  rYear &lt;- getYear(reportDate)
+  cnt &lt;- df[df$ReportDate==reportDate,c(&quot;Year&quot;,&quot;LvNonCitizens&quot;)]
+  sapply(1:length(breaks), function(i) {
+    # add together those born in 1st and 2nd half of the year
+    hy1 &lt;- sum(cnt[findInterval(rYear-cnt$Year- 1E-7,breaks)==i,
+                   &quot;LvNonCitizens&quot;])/2 
+    hy2 &lt;- sum(cnt[findInterval(rYear-cnt$Year- 0.5 - 1E-7,breaks)==i,
+                   &quot;LvNonCitizens&quot;])/2
+    hy1 + hy2
+    })
+  }
+
+
+dsets &lt;- c(&quot;2007-01-01&quot;, &quot;2007-07-01&quot;, &quot;2008-01-01&quot;, &quot;2008-07-01&quot;, 
+           &quot;2009-01-01&quot;, &quot;2009-07-01&quot;, &quot;2010-01-01&quot;, &quot;2010-07-01&quot;, 
+           &quot;2011-01-01&quot;, &quot;2011-07-01&quot;, &quot;2012-01-01&quot;, &quot;2012-07-01&quot;, 
+           &quot;2013-01-01&quot;, &quot;2013-07-01&quot;, &quot;2014-01-01&quot;)
+
+for (ii in 1:length(dsets)) {
+  imgName &lt;- sprintf(&quot;temp/animB%03d.png&quot;,ii)
+  dset &lt;- dsets[ii]
+  png(filename=imgName, width=600,height=450)
+  slices &lt;- getSlices(dset)
+  breakLabels &lt;- breaks
+  breakLabels[breaks %% 2 == 1] &lt;- &quot;&quot;
+  barplot(getSlices(&quot;2007-01-01&quot;), col=&quot;white&quot;,
+          border=NA,
+          xlab=&quot;Age groups (0-4, 5-9, etc.)&quot;, 
+          ylab=&quot;Count of non-citizens&quot;)
+  barplot(slices, col=&quot;pink&quot;, names.arg=breakLabels, add=TRUE)
+  # Draw only horizontal grid lines
+  grid(nx=NA, ny=NULL)
+  # Place the date above the grid, center it on the 2nd bar
+  text(2, 38000, labels = dset, col=&quot;darkgray&quot;, 
+       font=2)
+  text(19, 38000, labels = as.character(round(sum(slices))), col=&quot;red&quot;, font=2)  
+  dev.off()
+  }
+if (Sys.info()[&#39;sysname&#39;] == &quot;Windows&quot;) {
+  cmdPrefix &lt;- &quot;cmd /c &quot;
+  } else { cmdPrefix &lt;- &quot;&quot; } 
+system(paste0(
+  cmdPrefix,
+  &quot;convert -delay 75 -loop 0 temp/animB*.png animB.gif&quot;
+  ))   
+</code></pre>
+
+<p><img src="animB.gif" alt="Histogramma (5-gadu intervāli)"></p>
+
+<hr>
+
+<h3>Jautājumi</h3>
+
+<ol>
+<li>Vai, izmantojot PMLP datus varētu iegūt histogrammu, kurā 
+vecumu intervāli ir īsāki nekā viens gads?</li>
+<li>Valodā R ir īpaša funkcija histogrammu zīmēšanai <strong>hist()</strong>. 
+Noskaidrot, vai ar šīs funkcijas palīdzību var histogrammas attēlu iegūt 
+īsāk un vienkāršāk nekā augšminētajā piemērā? </li>
+</ol>
+
+<p>拉脱维亚“非公民”的年龄构成：五年的直方图 - Non-citizen age structure in Latvia: 5-year histogram<br>
+<em>This report is available under a <a href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons License</a></em></p>
+
+</body>
+
+</html>

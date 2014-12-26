@@ -20,7 +20,8 @@ Ja PMLP pārskata datums ir kāda gada pirmais janvāris, tad sadalījums interv
 
 Sekojošā attēlā histogrammas mainās ik pēc 0.75 sekundēm - sākot no pārskata datuma "2007-01-01", "2007-07-01", "2008-01-01", ..., "2014-01-01" (pavisam kopā 15 histogrammas). Pēdējais attēls paliek 3.75 sekundes; pēc tam animācija atkārtojas. Animētā GIF veidošanai lietots rīks Imagemagick. 
 
-```{r results='hide', warning=FALSE, error=FALSE, message=FALSE}
+
+```r
 if (!"animation" %in% installed.packages()) install.packages("animation")
 library(animation)
 

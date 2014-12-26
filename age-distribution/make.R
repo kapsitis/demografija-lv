@@ -9,10 +9,7 @@ if (!"markdown" %in% installed.packages()) install.packages("markdown")
 library(knitr)
 library(markdown)
 
-files <- c("age-histogram1")
-# files <- c("age-histogram1",
-#            "age-histogram5",
-#            "population-pyramid")
+files <- c("age-histogram1","age-histogram5","population-pyramid")
 for (file in files) {
   knit(paste0(file,".rmd"))
   options(markdown.HTML.options = NULL)   
@@ -24,3 +21,5 @@ for (file in files) {
   writeLines(lines,paste0(file,".html"))
   file.remove(paste0(file,".temp.html"))
 }
+unlink("temp", recursive=TRUE)
+

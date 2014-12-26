@@ -24,44 +24,36 @@ Ja ar $X$ apzīmējam visu nepilsoņu kopu, tad pirms histogrammas zīmēšanas 
 
 ### Tabula: Nepilsoņu skaits vecuma grupās gada sākumā
 
-```{r createtable, results='asis', echo=FALSE}
-df <- read.csv("DzGads-VPd-2007_2014.csv")
-
-getYear <- function(x) round(1970+as.numeric(as.Date(x))/365.25, digits=1)
-breaks <- 5 * 0:20
-getSlices <- function(reportDate) {
-  rYear <- getYear(reportDate)
-  cnt <- df[df$ReportDate == reportDate, c("Year", "LvNonCitizens")]
-  sapply(1:length(breaks), function(i) {
-    # add together those born in 1st and 2nd half of the year
-    hy1 <- sum(cnt[findInterval(rYear - cnt$Year - 1e-07, breaks) == i, 
-                   "LvNonCitizens"])/2
-    hy2 <- sum(cnt[findInterval(rYear - cnt$Year - 0.5 - 1e-07, breaks) == 
-                     i, "LvNonCitizens"])/2
-    hy1 + hy2
-    })
-  }
-ages <- paste(breaks, breaks+4, sep="-")
-ages[length(ages)] <- "100+"
-dff <- data.frame(x = ages)
-dff$y2007 = getSlices("2007-01-01")
-dff$y2008 = getSlices("2008-01-01")
-dff$y2009 = getSlices("2009-01-01")
-dff$y2010 = getSlices("2010-01-01")
-dff$y2011 = getSlices("2011-01-01")
-dff$y2012 = getSlices("2012-01-01")
-dff$y2013 = getSlices("2013-01-01")
-dff$y2014 = getSlices("2014-01-01")
-cat("Age | 2007 | 2008 | 2009 | 2010 | 2011 | 2012 | 2013 | 2014", 
-    "---:|---:|---:|---:|---:|---:|---:|---:|---:|", sep="\n")
-cat(apply(dff, 1, function(X) paste(X, collapse=" | ")), sep = "\n")
-```
+Age | 2007 | 2008 | 2009 | 2010 | 2011 | 2012 | 2013 | 2014
+---:|---:|---:|---:|---:|---:|---:|---:|---:|
+0-4 |  4402 |  3988 |  3687 |  3371 |  2999 |  2500 |  2007 |  1563
+5-9 |  4938 |  4474 |  4190 |  3924 |  3552 |  3250 |  2915 |  2620
+10-14 |  6894 |  5508 |  4866 |  4424 |  4113 |  3736 |  3368 |  3051
+15-19 | 16736 | 13229 | 10489 |  8257 |  6183 |  4660 |  3683 |  3145
+20-24 | 18625 | 16904 | 15502 | 14187 | 12721 | 10845 |  8887 |  7011
+25-29 | 20232 | 18592 | 17667 | 16540 | 15223 | 14017 | 12943 | 11723
+30-34 | 21752 | 20531 | 19913 | 18983 | 17971 | 17028 | 15781 | 14734
+35-39 | 23557 | 22257 | 21365 | 20873 | 20242 | 19214 | 18248 | 17652
+40-44 | 31917 | 28698 | 26185 | 24051 | 22415 | 21165 | 20283 | 19331
+45-49 | 40546 | 38561 | 36298 | 33980 | 31137 | 28563 | 25958 | 23757
+50-54 | 40586 | 39437 | 39131 | 38105 | 36742 | 35614 | 33966 | 31757
+55-59 | 39545 | 38816 | 37530 | 36182 | 34215 | 32583 | 31118 | 29919
+60-64 | 22620 | 24388 | 27468 | 30693 | 32065 | 32481 | 31838 | 30360
+65-69 | 34092 | 29768 | 25292 | 21605 | 18740 | 18129 | 19892 | 22661
+70-74 | 24014 | 24950 | 26153 | 27418 | 27118 | 26446 | 23552 | 20197
+75-79 | 21880 | 20862 | 19551 | 18221 | 17326 | 17670 | 18765 | 19823
+80-84 | 13964 | 14432 | 14744 | 14748 | 14750 | 14311 | 13983 | 12886
+85-89 |  4698 |  5229 |  5767 |  6420 |  6983 |  7542 |  7986 |  7971
+90-94 |  1472 |  1383 |  1538 |  1563 |  1656 |  1871 |  2141 |  2250
+95-99 |   290 |   356 |   406 |   471 |   486 |   458 |   432 |   387
+100+ |    56 |    58 |    69 |    79 |    98 |   106 |   137 |    78
 
 ### Animēta histogramma
 
 Sekojošā attēlā histogrammas mainās ik pēc 0.75 sekundēm - sākot no pārskata datuma "2007-01-01", "2007-07-01", "2008-01-01", ..., "2014-01-01" (pavisam kopā 15 histogrammas). Pēdējais attēls paliek 3.5 sekundes; pēc tam animācija atkārtojas. Animētā GIF veidošanai lietots rīks Imagemagick.
 
-```{r results='hide', warning=FALSE, error=FALSE, message=FALSE}
+
+```r
 if (!"animation" %in% installed.packages()) install.packages("animation")
 library(animation)
 
@@ -115,7 +107,6 @@ system(paste0(
   cmdPrefix,
   "convert -delay 75 -loop 0 temp/animB*.png animB.gif"
   ))   
-
 ```
 
 ![Histogramma (5-gadu intervāli)](animB.gif)

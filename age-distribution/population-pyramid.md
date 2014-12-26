@@ -15,7 +15,8 @@ Izveidot vecuma piramīdu, kurā attēlots attiecīgi nepilsoņu un pilsoņu ska
 
 Ar tumši sarkanu aplīti abās piramīdas pusēs atzīmēts pilsoņu un nepilsoņu vidējais vecums (*average age*) jeb visu vecumu aritmētiskais vidējais; savukārt ar baltu aplīti - pilsoņu un nepilsoņu vecumu mediāna (*median age*), t.i. vecums, par kuru puse populācijas ir jaunāki, otra puse - vecāki. Gan mediānas gan vidējās vērtības aprēķinā mēs izmantojam *vienmērības pieņēmumu* - uzskatām, ka jebkuram vecumam, cilvēku vecumi ir vienmērīgi sadalīti visa gada laikā. 
 
-```{r results='hide', warning=FALSE, error=FALSE, message=FALSE}
+
+```r
 if (!"animation" %in% installed.packages()) install.packages("animation")
 if (!"plotrix" %in% installed.packages()) install.packages("plotrix")
 if (!"pyramid" %in% installed.packages()) install.packages("pyramid")
@@ -82,7 +83,6 @@ system(paste0(
   cmdPrefix,
   "convert -delay 75 -loop 0 temp/animC*.png animC.gif"
   ))   
-
 ```
 
 ![Vecumu piramīda](animC.gif)
