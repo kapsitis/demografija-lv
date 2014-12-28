@@ -1,4 +1,4 @@
-setwd("/home/st/demografija-lv/shiny/visc-exams/")
+setwd("/home/kalvis/demografija-lv/shiny/visc-exams/")
 
 if (!"plyr" %in% installed.packages()) install.packages("plyr")
 library(plyr)
@@ -7,8 +7,7 @@ inputFiles <- c("visi_dati_2012.csv",
                 "visi_dati_2013.csv",
                 "visi_dati_2014.csv")
 
-path <- "/home/st/shiny-server/sample-apps/math-exam-totals/"
-filenames <- paste0(path,inputFiles)
+filenames <- paste0(getwd(),"/",inputFiles)
 
 visc_exams = ldply(filenames, function(filename) {
   dum = read.table(
