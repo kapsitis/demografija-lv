@@ -1,6 +1,10 @@
-library(shiny)
-library(plyr)
+if (!"ggplot2" %in% installed.packages()) install.packages("ggplot2")
+if (!"plyr" %in% installed.packages()) install.packages("plyr")
+if (!"shiny" %in% installed.packages()) install.packages("shiny")
+
 library(ggplot2)
+library(plyr)
+library(shiny) 
 
 source("util.R")
 

@@ -1,4 +1,11 @@
+if (!"ggplot2" %in% installed.packages()) install.packages("ggplot2")
+if (!"plyr" %in% installed.packages()) install.packages("plyr")
+if (!"shiny" %in% installed.packages()) install.packages("shiny")
+
+library(ggplot2)
+library(plyr)
 library(shiny) 
+
 
 shinyUI(pageWithSidebar( 
   headerPanel("VISC Dati: Centraliz\u0113tie eks\u0101meni"), 
