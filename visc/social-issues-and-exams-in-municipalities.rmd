@@ -1,0 +1,35 @@
+Sociālie rādītāji un centralizēto eksāmenu rezultāti pašavldībās
+----------
+
+[Uz sākumu](../index.html)
+
+## Ievads
+
+Raksta mērķis ir apkopot un vispārināt datus par bezdarba līmeni un centralizēto (12.kl.) kā arī necentralizēto (9.kl.) eksāmenu rezultātiem. Tas varētu palīdzēt saprast sociālo apstākļu iespaidu uz izglītības rezultātiem Latvijā. Tā kā mums nav zināmi tādi dati, kuros individuālie sociālie apstākļi būtu kopā ar eksāmenu rezultātiem, tad visa analīze notiek veselu skolu, kā arī veselu pilsētu un novadu līmenī (piemēram, vai bagātās pašvaldībās ar aktīvāku darba tirgu caurmēra rezultāti ir citādi nekā nabadzīgās pašvaldībās ar augstu bezdarbu). Zīmējam vizualizācijas lai uzzinātu, kādas bezdarba un izglītības rezultātu kombinācijas ir valstī biežāk sastopamas.
+
+Jāuzsver, ka ikvienā datu kopā var ieraudzīt kaut kādas "regularitātes", kas var būt gan likumsakarība gan sagadīšanās. Pat ja izdodas pamatot korelāciju, tā nepamato cēloņsakarību vienā vai otrā virzienā (piemēram,  bezdarba līmenis iespaido skolēnu sekmes vai otrādi). Tieši tāpat - novērojums, ka lidostu tuvumā esošajās pašvaldībās skolēniem ir labas sekmes matemātikā, var nenozīmēt tiešu lidostas labvēlīgo ietekmi. Šādu lietu noskaidrošana ir ārpus mūsu interešu loka. Mūsu pieeja ir deskriptīvā statistika, kas attēlo vidējos jeb agregētos bezdarba un sekmju rādītājus atsevišķo skolu vai pašvaldību līmenī un parāda vispārīgās tendences. Izveidojot attiecīgu modeli, var novērtēt, kādu daļu no reģionālajām atšķirībām eksāmenu rezultātos varētu izskaidrot pašvaldības sociālā situācija, un kādu daļu - citi apstākļi.
+
+## Izglītības dati
+#### Izglītības rezultāti 
+* Vidējās izglītības gala eksāmenu rezultātus var atrast VISC mājaslapā. 
+
+
+## Bezdarba dati
+* **Bezdarba rādītāji CSP:** Par *bezdarbniekiem* jeb *darba meklētājiem* statistiski dati tiek apkopoti vairākās vietās. [CSP dati](#bibCSP) aplūko nodarbinātības rādītājus kopā ar citiem demogrāfisku datu atribūtiem. Bezdarba dati ir pieejami 6 statistiskajos reģionos (Rīgas reģions, Pierīgas reģions, Vidzemes reģions, Kurzemes reģions, Zemgales reģions, Latgales reģions) - visticamāk domāti (Eiropas Savienības NUTS-3 reģioni)[http://en.wikipedia.org/wiki/Statistical_regions_of_Latvia]. 
+* **Bezdarba rādītāji NVA:** Nodarbinātības Valsts aģentūras mājaslapā ir [NVA pārskati](#bibNVA), kur salīdzināti bezdarba dati katru mēnesi. Šajos pārskatos ir tikai 5 reģioni (atbilstoši MK noteikumiem Nr.391), toties atsevišķi izdalītas visas 9 lielpilsētas. 
+* **EasyBI dati:** Kartes un glītas vizualizācijas
+
+## Pārskati
+### Nu tā
+
+
+
+## Bibliogrāfija
+
+* [SCP Dati](http://data.csb.gov.lv/pxweb/lv/Sociala/Sociala__ikgad__nodarb/?tablelist=true&rxid=61117407-b805-4ae2-8c61-6f7dc521a42a): **Iedzīvotāji un sociālie procesi** > **Ikgadējie statistikas dati** >> **Nodarbinātība un bezdarbs**. 
+* [NVA Dati](http://www.nva.gov.lv/index.php?cid=6) Pārskats "Bezdarba rādītāji reģionos un pilsētās 2014.gada novembrī salīdzinājumā ar 2014.gada oktobri" vai tml. sniedz ziņas par bezdarba līmeni 
+
+
+
+
+*This report is available under a [Creative Commons License](http://creativecommons.org/licenses/by/4.0/deed.en_US)*

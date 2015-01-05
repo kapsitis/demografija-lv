@@ -202,10 +202,6 @@ shinyServer(function(input, output) { # server is defined within these parenthes
     # How many annotation lines per 1 plot
     numAnno <- 2
     
-    # either median/IQR ("m-iqr"), 
-    # or mean/st.dev. ("mu-sigma")
-    #annoStyle <- "m-iqr"
-    
     p <- ggplot(theData(), aes(x=koppro, fill=extra_col)) +
       geom_histogram(colour="#E5E5E5", breaks=seq(0,100,by=100/(input$histBars)))
     g <- ggplot_build(p)
