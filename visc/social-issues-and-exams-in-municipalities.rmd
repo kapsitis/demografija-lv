@@ -1,35 +1,133 @@
-Sociālie rādītāji un centralizēto eksāmenu rezultāti pašavldībās
+Sociālie rādītāji un centralizēto eksāmenu rezultāti pašvaldībās
 ----------
 
 [Uz sākumu](../index.html)
 
 ## Ievads
 
-Raksta mērķis ir apkopot un vispārināt datus par bezdarba līmeni un centralizēto (12.kl.) kā arī necentralizēto (9.kl.) eksāmenu rezultātiem. Tas varētu palīdzēt saprast sociālo apstākļu iespaidu uz izglītības rezultātiem Latvijā. Tā kā mums nav zināmi tādi dati, kuros individuālie sociālie apstākļi būtu kopā ar eksāmenu rezultātiem, tad visa analīze notiek veselu skolu, kā arī veselu pilsētu un novadu līmenī (piemēram, vai bagātās pašvaldībās ar aktīvāku darba tirgu caurmēra rezultāti ir citādi nekā nabadzīgās pašvaldībās ar augstu bezdarbu). Zīmējam vizualizācijas lai uzzinātu, kādas bezdarba un izglītības rezultātu kombinācijas ir valstī biežāk sastopamas.
+Raksta mērķis ir apkopot un vispārināt datus par bezdarba līmeni un centralizēto (12.kl.) kā arī necentralizēto (9.kl.) eksāmenu rezultātiem. Tas varētu palīdzēt saprast sociālo apstākļu iespaidu uz izglītības rezultātiem Latvijā. Tā kā mums nav zināmi tādi dati, kuros individuālie sociālie apstākļi būtu kopā ar eksāmenu rezultātiem, tad visa analīze notiek veselu skolu, kā arī veselu pilsētu un novadu līmenī (piemēram, vai bagātās pašvaldībās ar aktīvāku darba tirgu caurmēra rezultāti ir citādi nekā nabadzīgās pašvaldībās ar augstu bezdarbu). Zīmējam vizualizācijas lai uzzinātu, kādas bezdarba un izglītības rezultātu kombinācijas ir biežāk sastopamas.
 
-Jāuzsver, ka ikvienā datu kopā var ieraudzīt kaut kādas "regularitātes", kas var būt gan likumsakarība gan sagadīšanās. Pat ja izdodas pamatot korelāciju, tā nepamato cēloņsakarību vienā vai otrā virzienā (piemēram,  bezdarba līmenis iespaido skolēnu sekmes vai otrādi). Tieši tāpat - novērojums, ka lidostu tuvumā esošajās pašvaldībās skolēniem ir labas sekmes matemātikā, var nenozīmēt tiešu lidostas labvēlīgo ietekmi. Šādu lietu noskaidrošana ir ārpus mūsu interešu loka. Mūsu pieeja ir deskriptīvā statistika, kas attēlo vidējos jeb agregētos bezdarba un sekmju rādītājus atsevišķo skolu vai pašvaldību līmenī un parāda vispārīgās tendences. Izveidojot attiecīgu modeli, var novērtēt, kādu daļu no reģionālajām atšķirībām eksāmenu rezultātos varētu izskaidrot pašvaldības sociālā situācija, un kādu daļu - citi apstākļi.
+Ikvienā datu kopā var ieraudzīt kaut kādas "regularitātes", kas var būt gan likumsakarība, gan sagadīšanās. Pat ja izdotos pamatot korelāciju, tā nepamato cēloņsakarību (piemēram, vai bezdarba līmenis nosaka skolēnu vidējo eksāmena vērtējumu vai eksāmena vērtējumi - bezdarbu, vai arī tie abi radušies no kāda cita cēloņa, vai ir vispār nesaistīti). Šādu cēloņsakarību noskaidrošana mūs neinteresē. Šajā rakstā izmantotas deskriptīvās statistikas metodes, kas attēlo vidējos jeb agregētos bezdarba un sekmju rādītājus atsevišķo skolu vai pašvaldību līmenī un parāda vispārīgās tendences kā arī neparastus "datu punktus", kurus var īpaši pētīt (piemēram, tās pašvaldības vai skolas, kurās ļoti augsts bezdarbnieku īpatsvars ir apvienojumā ar labu akadēmisko sniegumu skolās). 
 
-## Izglītības dati
-#### Izglītības rezultāti 
-* Vidējās izglītības gala eksāmenu rezultātus var atrast VISC mājaslapā. 
+## Datu avoti
+### Eksāmenu rezultāti
+
+9.klašu jeb necentralizētie eksāmeni pieejami tikai kā aritmētiskie vidējie dažādās skolās. Katrai skolai norādīts tās nosaukums eksāmena brīdī, pašvaldība, kurā tā atrodas, kā arī aritmētiskais vidējais rezultāts (5 priekšmetos - Angļu valodā (ANG9), Matemātikā (MAT9), Informātikā (INF12), Vēsturē (VES9), Valsts/latviešu valodā (VLL9)). 
+
+* http://visc.gov.lv/vispizglitiba/eksameni/statistika/2010/
+* http://visc.gov.lv/vispizglitiba/eksameni/statistika/2011/
+* http://visc.gov.lv/vispizglitiba/eksameni/statistika/2012/
+* http://visc.gov.lv/vispizglitiba/eksameni/statistika/2013/
+* http://visc.gov.lv/vispizglitiba/eksameni/statistika/2014/
+
+### Skolēnu demogrāfija
+
+Ņemot vērā to, ka VISC lapā dotajiem eksāmenu rezultātiem nav zināms eksāmenus kārtojušo skaits, tas jāiegūst no cita avota. Būtu aplami rēķināt vidējo eksāmena rezultātu pašvaldībā, atrodot aritmētisko vidējo no pašvaldībā esošo skolu aritmētiskajiem vidējiem - piemēram, pēc formulas $R = \frac{R_1 + R_2}{2}$, kur $R_1, R_2$ - divu skolu vidējie rezultāti. Ja pašvaldībā ir viena liela un viena maza skola (skolēnu skaits attiecīgi $m_1$ un $m_2$), tad vidējais eksāmena rezultāts pašvaldībā ir *svērts vidējais* - $R = \frac{m_1 R_1 + m_2 R_2}{m_1 + m_2}$. Skaitlis $R$ atradīsies nevis tieši pa vidu starp $R_1$ un $R_2$, bet gan būs tuvāks lielākās mācību iestādes vidējam rezultātam.
+
+Skolēnu skaita novērtēšanai izmantosim datu kopu, kura, visticamāk, eksportēta no VIIS (precīzs tās iegūšanas veids autoram nav zināms): 
+
+* [Statistika_skoleni_IZM.xlsx](Statistika_skoleni_IZM.xlsx) - pirmdokuments
+* [Statistika_skoleni_IZM.csv](Statistika_skoleni_IZM.csv) - CSV datu fails
+
+### Bezdarba dati
+* http://raim.gov.lv (cilne **Datu atlase**). Tika atlasīti sekojoši rādītāji:
+    + Bezdarba līmenis (% RAIM apr.)
+    + Demogrāfiskā slodze (cik cilvēku zem 15 un virs 62 gadiem ir uz 1000 iedzīvotājiem darbspējas vecumā)
+    + Iedzīvotāju skaita izmaiņas gadā (%, RAIM apr.)
+    + Ieturētā iedzīvotāju ienākuma nodokļa summa (pēc darba ņēmēja deklarētās adreses) uz 1 iedzīvotāju (EUR, RAIM apr.)
+    + Pašvaldības budžeta izdevumi izglītībai uz vienu izglītojamo (EUR, RAIM apr.)
+    + Pašvaldības budžeta NĪN ieņēmumi uz vienu iedzīvotāju (EUR, RAIM apr.)
+    + Sieviešu īpatsvars (%, RAIM apr.)
+    
+Salīdzināšanai var izmantot arī šādus datu avotus:
+
+* [CSP dati](#bibCSP) aplūko nodarbinātības rādītājus kopā ar citiem demogrāfisku datu atribūtiem. Bezdarba dati ir pieejami 6 statistiskajos reģionos (Rīgas reģions, Pierīgas reģions, Vidzemes reģions, Kurzemes reģions, Zemgales reģions, Latgales reģions) - visticamāk domāti [Eiropas Savienības NUTS-3 reģioni](http://en.wikipedia.org/wiki/Statistical_regions_of_Latvia). 
+* [NVA pārskati](#bibNVA), kur salīdzināti bezdarba dati katru mēnesi. Šajos pārskatos ir tikai 5 reģioni (atbilstoši MK noteikumiem Nr.391), toties atsevišķi izdalītas visas 9 lielpilsētas. 
 
 
-## Bezdarba dati
-* **Bezdarba rādītāji CSP:** Par *bezdarbniekiem* jeb *darba meklētājiem* statistiski dati tiek apkopoti vairākās vietās. [CSP dati](#bibCSP) aplūko nodarbinātības rādītājus kopā ar citiem demogrāfisku datu atribūtiem. Bezdarba dati ir pieejami 6 statistiskajos reģionos (Rīgas reģions, Pierīgas reģions, Vidzemes reģions, Kurzemes reģions, Zemgales reģions, Latgales reģions) - visticamāk domāti (Eiropas Savienības NUTS-3 reģioni)[http://en.wikipedia.org/wiki/Statistical_regions_of_Latvia]. 
-* **Bezdarba rādītāji NVA:** Nodarbinātības Valsts aģentūras mājaslapā ir [NVA pārskati](#bibNVA), kur salīdzināti bezdarba dati katru mēnesi. Šajos pārskatos ir tikai 5 reģioni (atbilstoši MK noteikumiem Nr.391), toties atsevišķi izdalītas visas 9 lielpilsētas. 
-* **EasyBI dati:** Kartes un glītas vizualizācijas
+## Datu validācija un labošana
+
+* **Statistika_skoleni_IZM.csv** 
+    + Pirms datus var lietot, skolām jānorāda pašvaldības. Tas tika darīts, izmantojot šādu algoritmu. Katrai skolai un tās reģistrācijas numuram no CSV faila: (1) atrod skolu ar šādu reģistrācijas numuru VIIS datu kopā un izmanto šīs skolas adresi; (2) ja tāda neeksistē, izmanto R.Simanovska sagatavoto failu skola_pasvaldiba.csv (sk. https://drive.google.com/#folders/0BzsSB9xI18o8bHdHN0Y3cWpJMEU); (3) visos citos gadījumos skolu meklē VIIS publiskajā sistēmā un novadu/pilsētu noraksta no adreses.
+    + Skolu saraksts ir aktuālie dati uz 2014.g. 1.septembri (savukārt visi necentralizēto eksāmenu rezultāti ir doti skolām par 2014.g. pavasari vai vēl agrākiem gadiem). Tā rezultātā nācās šos datus kombinēt ar VIIS publiskās datu kopas eksporta datiem - **iestades_viis_visc.csv**, lai apskatot iestāžu reģistrācijas numurus varētu atrast katrai skolai tās pašvaldību. 
+* **2010-necentralizetie-ANG9.csv** (u.c.) 
+    + 4 skolas ir norādītas Valmieras novadā. Šāda novada nav; patiesībā visas šīs skolas atrodas Kocēnu novadā. 
+    + Mērsraga vidusskola ir norādīta Rojas novadā. Faktiski skolas adrese ir Mērsraga novadā. 
+
+## Skolu nosaukumu kolīzijas
+
+Skolas nosaukums nevar viennozīmīgi identificēt mācību iestādi, jo vairākām skolām nosaukumi sakrīt. Dažas skolas VIIS sistēmā ir centušās izvairīties no divdomīga nosaukuma - un to oficiālais nosaukums jau satur novada vai pagasta apzīmējumu ("Rugāju novada Eglaines pamatskola", "Vidagas Sikšņu pamatskola"). Tomēr daudzos IZM pārskatos arī šīs skolas figurē ar īsajiem un divdomīgajiem nosaukumiem ("Eglaines pamatskola", "Sikšņu pamatskola"). Pirms vizualizāciju zīmēšanas mācību iestāžu nosaukumi pārveidoti, izmantojot viennozīmīgo nosaukumu no VIIS vai arī norādot pilsētu/novadu iekavās. Mūsu datu apstrādē pielietota skolu pārsaukšana atbilstoši sekojošam sarakstam:
+
+* **Zemgales vidusskola**
+    + Zemgales vidusskola (Tukuma novads) -- Reģ.Nr.:4313900250; IZM kods:231308
+    + Zemgales vidusskola (Daugavpils novads) -- Reģ.Nr.:4213900517; IZM kods:061313
+* **Eglaines pamatskola**
+    + Rugāju novada Eglaines pamatskola -- Reģ.Nr.:4212900422; IZM kods:031203    
+    + Eglaines pamatskola (Ilūkstes novads) -- Reģ.Nr.:4212900501; IZM kods:061204
+* **Mežvidu pamatskola**
+    + Mežvidu pamatskola (Kārsavas novads) -- Reģ.Nr.:4212900463; IZM kods:151205
+    + Mežvidu pamatskola (Viļakas novads) -- Reģ.Nr.:4212900425; IZM kods:031205
+* **Rubenes pamatskola**
+    + Rubenes pamatskola (Kocēnu novads) -- Reģ.Nr.:4412900637; IZM kods:251211
+    + Rubenes pamatskola (Jēkabpils novads) -- Reģ.Nr.:4512900281; IZM kods:101213
+* **Sikšņu pamatskola**
+    + Sikšņu pamatskola (Rucavas novads) -- Reģ.Nr.:4112901043; IZM kods:131217
+    + Vidagas Sikšņu pamatskola (Apes novads) -- Reģ.Nr.:4412900911; IZM kods:021213
+* **Salas pamatskola** 
+    + Salas pamatskola (Preiļu novads) -- Reģ.Nr.:4212900370; IZM kods:181212
+    + Babītes novada pašvaldības Salas sākumskola -- Reģ.Nr.:4311902824; IZM kods:201108
+* **Rīgas Tālmācības vidusskola**
+    + Rīgas 1. Tālmācības vidusskola (Iecavas novads) -- Reģ.Nr.:4515802999; IZM kods:041582
+    + Rīgas Tālmācības vidusskola (Iecavas novads) -- Reģ.Nr.:4515802737; IZM kods:041581
+    + Tālmācības vidusskola "Rīgas Komercskola" -- Reģ.Nr.:3615802846; IZM kods:361581
+* **Krustpils pamatskola:** Skola atrodas Jēkabpils pilsētas teritorijā, bet to administratīvi pārvalda Krustpils novads. Dažos IZM pārskatos (necentralizēto eksāmenu rezultāti par 2011. un 2012.gadu) šī skola nepareizi norādīta kā Jēkabpils skola. 
+    + Krustpils pamatskola (Krustpils novads) -- Reģ.Nr.:4512900275; IZM kods:101201
+
+## Pieņēmumi
+
+Datu kopas, no kurām iegūtas vizualizācijas ir nepilnīgi savietojamas. Skolēnu skaits klasēs ir zināms par 2014.gada 1.septembri (820 dažādām skolām); turklāt tikai par pirmajām 9 klasēm. Savukārt necentralizētos eksāmenus no 2010. līdz 2014.gadam kārtoja 910 dažādu skolu audzēkņi. Viņi 2014-09-01 datos (tabulā  **Statistika_skoleni_IZM.xlsx**) neparādās, jo pamatskolu ir jau beiguši. Šajā laikā notikušas daudzas skolu reorganizācijas. Skolēnu un mācību iestāžu skaits jūtami sarucis, turklāt skolēni mums nezināmā veidā pārgrupējušies starp atlikušajām mācību iestādēm. Lai kaut kā risinātu šīs datu kopu nepilnības, ir jāizdara virkne pieņēmumu:
+
+* **Pieņēmums par skolēnu skaita vienmērību laikā:** Ja 2014.g. 1.septembrī kādas skolas 1.-9.klasē mācās $K1,K2,\ldots,K_9$ skolēni, tad pieņemam, ka 2010.-2014.g. pavasarī 9.klases eksāmenu kārtoja $\frac{K1+K2+\ldots+K9}{9}$ skolēni - t.i. pašreizējā klašu aizpildījuma vidējais aritmētiskais. Ja $K7+K8+K9 = 0$, tad pieņemam, ka attiecīgā skola ir sākumskola un 9.klases beidzēju tajā nav bijis vispār. Šis pieņēmums, protams, nav precīzs straujās depopulācijas dēļ. No šī pieņēmuma varētu rasties maldīgi secinājumi, ja depopulācija dažādās pašvaldībās ir notikusi ļoti nevienmērīgi. Šo kļūdu varētu mēģināt koriģēt izmantojot CSP jeb iedzīvotāju reģistra datus - un ekstrapolēt skolēnu skaitu atmuguriski pa laika asi. Tomēr jāņem vērā, ka (saskaņā ar LU profesora Mihaila Hazana secinājumiem) paši iedzīvotāju reģistra dati ir ļoti neprecīzi. Tādēļ šāda korekcija nav veikta.
+* **Pieņēmums par skolēnu skaita vienmērīgu pārdalīšanos pašvaldības ietvaros:** Skolas pēdējo 5 gadu laikā nereti mainījušas nosaukumus, reorganizētas, dalītas vai apvienotas ar citām skolām. Ja kādā pašvaldībā $P$ kādā no gadiem $G \in \{2010, 2011, 2012, 2013, 2014\}$ ir eksistējušas skolas $X_1, X_2,\ldots,X_m$, kuras piedalījās $G$ gada eksāmenā, bet 2014-09-01 pārskatā tās vairs neeksistē, tad meklē visas tās skolas, kuras šajā pārskatā parādījās no jauna un skolēnu skaitu vienādās daļās sadala starp $X_1, X_2,\ldots,X_m$. Arī šis var būt ļoti neprecīzs pieņēmums, bet mums nav nekādu ziņu par to, kā skolēni migrējuši starp mācību iestādēm to reorganizācijas brīžos. Tādēļ jāpieņem, ka viņi to darījuši vienādās porcijās.  
 
 ## Pārskati
-### Nu tā
+### Sagatavošanās datu vizualizācijai
+
+* **Datu faili:** 
+* **KnitR šablons:**
+* **R un RStudio:** 
+* **Imagemagick:** 
+
+1. Uzstāda R, RStudio un Imagemagick
+2. Atarhivē datu failus jebkurā direktorijā
+3. Ar RStudio atver KnitR šablonu
+4. KnitR šablonam izlabo tekošo direktoriju (setwd())
+5. RStudio spiež pogu **Knit HTML**, lai iegūtu esošo pārskatu
 
 
+### Vizualizāciju rezultāti
+
+MAT9 eksāmens izraudzīts tādēļ, ka šo eksāmenu parasti labo ārpus mācību iestādes - t.i. eksāmena rezultātu mazāk iespaido sistemātiskās kļūdas, subjektīvisms darbu labošanā vai tml. 
+
+#### MAT9 eksāmenu rezultāti un pašvaldības bezdarba līmenis
+
+#### MAT9 eksāmenu rezultāti un pašvaldības bezdarba līmenis (nelineārs modelis)
+
+#### MAT9 eksāmenu rezultāti un pašvaldības demogrāfiskā slodze
+
+#### MAT9 eksāmenu rezultāti un pašvaldības iedzīvotāju skaita izmaiņa gadā
+
+#### MAT9 eksāmenu rezultāti un pašvaldības vidējais IIN uz 1 iedzīvotāju
+
+#### MAT9 eksāmenu rezultāti un pašvaldības vidējais NĪN uz 1 iedzīvotāju
+
+#### MAT9 eksāmenu rezultāti un pašvaldības izdevumi uz 1 izglītojamo
+
+#### MAT9 eksāmenu rezultāti un sieviešu īpatsvars pašvaldībā
 
 ## Bibliogrāfija
 
 * [SCP Dati](http://data.csb.gov.lv/pxweb/lv/Sociala/Sociala__ikgad__nodarb/?tablelist=true&rxid=61117407-b805-4ae2-8c61-6f7dc521a42a): **Iedzīvotāji un sociālie procesi** > **Ikgadējie statistikas dati** >> **Nodarbinātība un bezdarbs**. 
-* [NVA Dati](http://www.nva.gov.lv/index.php?cid=6) Pārskats "Bezdarba rādītāji reģionos un pilsētās 2014.gada novembrī salīdzinājumā ar 2014.gada oktobri" vai tml. sniedz ziņas par bezdarba līmeni 
-
-
-
+* [NVA Dati](http://www.nva.gov.lv/index.php?cid=6) Pārskats "Bezdarba rādītāji reģionos un pilsētās 2014.gada novembrī salīdzinājumā ar 2014.gada oktobri"
 
 *This report is available under a [Creative Commons License](http://creativecommons.org/licenses/by/4.0/deed.en_US)*

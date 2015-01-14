@@ -1,0 +1,146 @@
+if (!"ggplot2" %in% installed.packages()) install.packages("ggplot2")
+if (!"plyr" %in% installed.packages()) install.packages("plyr")
+if (!"shiny" %in% installed.packages()) install.packages("shiny")
+if (!"stats" %in% installed.packages()) install.packages("stats")
+if (!"Hmisc" %in% installed.packages()) install.packages("Hmisc")
+
+library(ggplot2)
+library(Hmisc)
+library(plyr)
+library(shiny) 
+library(stats)
+
+dataPath <- "/home/kalvis/demografija-lv/visc/sampledata"
+
+setwd(thePath)
+source("../R/getAllData.R")
+
+
+## Non-centralized exam results
+renamings <- getRenamings(dataPath)
+nonCentralizedDF <- getNonCentralizedDF(dataPath)
+
+socialIndicators <- getSocialIndicators(dataPath)
+nonCentralizedAndSocialDF <- merge(nonCentralizedDF, socialIndicators, 
+                     by.x = c("municipality","year"),
+                     by.y = c("Municipality","year"))
+
+
+
+## Create the school demography table; 
+## and attach municipality to every school there
+schoolPop <- getSchoolPopulations(dataPath)
+skolaPasvaldiba <- getSkolaPasvaldiba(dataPath, "skola_pasvaldiba.csv")
+skolaPasvaldibaAlt <- getSkolaPasvaldiba(dataPath, "skola_pasvaldiba2.csv")
+viisDati <- getViisDati(dataPath)
+
+myMun <- sapply(as.vector(schoolPop$SchoolName), findMunBySch)
+schoolPop$Municipality <- myMun
+#schoolPop$Used <- rep(0,times=nrow(schoolPop))
+renNumber <- as.vector(nonCentralizedAndSocialDF$renamed)
+nonCentralizedAndSocialDF$studentNum <- sapply(renNumber,getStudentNum)
+nonCentralizedAndSocialDF$weightedResult <- 
+  nonCentralizedAndSocialDF$result * nonCentralizedAndSocialDF$studentNum
+
+
+# df1 <- aggregate(totalExaminees ~ municipality + year + subject, nonCentralizedAndSocialDF, sum)
+# 
+# df1 <- aggregate(weightedResult ~ municipality + year + subject, nonCentralizedAndSocialDF, sum)
+
+
+# neDF <- data.frame(municipality=neMunicipalities,school=neSchools)
+# write.table(neDF, 
+#             file="renamings.new.csv", 
+#             sep=",",
+#             qmethod="double", 
+#             row.names=FALSE, 
+#             fileEncoding="UTF-8")
+
+
+
+
+
+### For loop by year
+gg <- "2014"
+theSubject <- "MAT9"
+
+# fSchoolData <- nonCentralizedAndSocialDF[nonCentralizedAndSocialDF$year == gg & 
+#                                            nonCentralizedAndSocialDF$subject == theSubject,]
+fSchoolData <- subset(nonCentralizedAndSocialDF, year == gg & subject == theSubject)
+
+aggSchoolData <- aggregate(studentNum ~ municipality, fSchoolData, sum)
+
+
+
+aggSchoolData <- aggregate(result ~ municipality, fSchoolData, mean)
+sbr <- getSocialByRegion(dataPath)
+fullSchools <- merge(aggSchoolData, sbr, 
+                     by.x = "municipality",
+                     by.y = "municipality")
+
+theColors <- list("Riga city" = "#FF2F2F", 
+                  "Latgale region" = "#3F4FFF", 
+                  "Vidzeme region" = "#FF982F", 
+                  "Kurzeme region" = "#2FBFD5", 
+                  "Riga region" = "#68FF5F",
+                  "Zemgale region" = "#D5FF2F"                    
+)
+
+myColors <- c("#2FBFD5","#3F4FFF", "#FF2F2F", "#68FF5F","#FF982F", "#D5FF2F" )
+
+fullSchools$theColor <- sapply(as.vector(fullSchools$region), function(idx) { theColors[[idx]]})
+
+fullSchools$pointSize <- sapply(as.vector(fullSchools$region), function(idx) { sample(1:10, 1) })
+
+#   plot(fullSchools$jobless, 
+#        fullSchools$result, 
+#        col="black",
+#        circles=fullSchools$size,
+#        bg=fullSchools$theColor, 
+#        lwd=1,
+#        pch=21,
+#        xlab="Darba meklētāji %", 
+#        ylab="MAT9 rezultāti %")
+#   title("2014.g. 9.kl. matemātika un bezdarbs pašvaldībās")
+ourTitle <- "Necentralizētie eksāmeni un bezdarbs pašvaldībās"
+ourSubtitle <- "2014.g., 9.kl. matemātika"
+
+
+ggplot(fullSchools, aes(x=jobless, y=result, fill=region)) +
+  geom_point(shape=21, aes(size = pointSize)) +
+#  geom_point() +
+  
+  scale_x_continuous(name="Darba meklētāji %",
+                     minor_breaks=seq(0, 27.5, by=2.5), breaks=seq(0,25,by=5)) +
+  scale_y_continuous(name="MAT9 rezultāts% (svērts vidējais starp pašvaldībā esošajām skolām)", 
+                     minor_breaks=seq(40,80,by=5), breaks=seq(40,80,by=10)) +
+  ggtitle(bquote(atop(.(ourTitle), atop(italic(.(ourSubtitle)), "")))) +
+  theme(
+    panel.background = element_rect(fill = 'white', colour = 'darkgreen'),
+    legend.position="none",
+    plot.title = element_text(size = 20, face = "bold", colour = "black", vjust = -1),
+    panel.grid.minor = element_line(colour="lightgray", size=0.5, linetype="dotted"),
+    panel.grid.major = element_line(colour="black", size=0.5, linetype="dotted")
+  ) +
+  scale_fill_manual(values=myColors)
+
+
+#  geom_smooth(method=lm,  se=FALSE) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

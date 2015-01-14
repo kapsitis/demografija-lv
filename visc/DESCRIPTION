@@ -1,0 +1,9 @@
+Package: DDGatveSchools
+Type: Package
+Title: R utility functions to visualize Latvian education data
+Version: 1.0
+Date: 2015-01-05
+Author: Kalvis Apsitis
+Maintainer: <datu.nesejs@gmail.com>
+Description: Ministry of Education publishes various data sets as XML or MS Excel. This package makes use of this data to enable more convenient creation of reports, Shiny apps and similar derived work, so that the data is easier to browse and analyze. All the metadata is taken from our centralized exams (our local analogue of SAT), and also - the metadata of schools and municipalities (including social indicators - unemployment rate, per capita income tax, etc.). This package at its current stage is NOT meant to be applicable for any other data, including educational data from other countries. Latvian educational data sets (years 2010-2014) are included with this package, so some function calls return meaningful stuff even without initialization from external CSV sources. Some of the reports created with this package can be found in http://www.demografija.lv
+License: Creative Commons (CC BY 4.0)
