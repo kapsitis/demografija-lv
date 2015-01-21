@@ -83,6 +83,17 @@ Skolas nosaukums nevar viennozīmīgi identificēt mācību iestādi, jo vairāk
 * **Krustpils pamatskola:** Skola atrodas Jēkabpils pilsētas teritorijā, bet to administratīvi pārvalda Krustpils novads. Dažos IZM pārskatos (necentralizēto eksāmenu rezultāti par 2011. un 2012.gadu) šī skola nepareizi norādīta kā Jēkabpils skola. 
     + Krustpils pamatskola (Krustpils novads) -- Reģ.Nr.:4512900275; IZM kods:101201
 
+## Citas datu anomālijas
+
+* **Skolas, kuru piederība pašvaldībai rada šaubas**
+    + Krustpils pamatskola, Reģ.Nr.: 4512900275. Skolas adrese ir Jēkabpilī, bet skolu administrē Krustpils novada pašvaldība. 
+    + Rīgas Tālmācības vidusskola, Reģ.Nr.: 4515802737. Nosaukumā ir vārds "Rīga", bet reģistrācijas adrese Iecavas novadā.
+    + Rīgas 1. Tālmācības vidusskola, Reģ.Nr.: 4515802999. Nosaukumā ir vārds "Rīga", reģistrācijas adrese arī ir Iecavas novadā, bet citā adresē nekā "Rīgas Tālmācības vidusskola.
+* **Pazuduši eksāmenu rezultātu ieraksti?**
+    + Strenču novadā 2014.g. nav nevienas skolas, kurā būtu MAT9 eksāmena rezultāti; citos 9.klases priekšmetos rezultāti ir - tātad vajadzētu būt arī skolēniem, kuri nezkāpēc nekārtoja 9.klašu matemātikas pārbaudes darbu.
+    
+
+
 ## Pieņēmumi
 
 Datu kopas, no kurām iegūtas vizualizācijas ir nepilnīgi savietojamas. Skolēnu skaits klasēs ir zināms par 2014.gada 1.septembri (820 dažādām skolām); turklāt tikai par pirmajām 9 klasēm. Savukārt necentralizētos eksāmenus no 2010. līdz 2014.gadam kārtoja 910 dažādu skolu audzēkņi. Viņi 2014-09-01 datos (tabulā  **Statistika_skoleni_IZM.xlsx**) neparādās, jo pamatskolu ir jau beiguši. Šajā laikā notikušas daudzas skolu reorganizācijas. Skolēnu un mācību iestāžu skaits jūtami sarucis, turklāt skolēni mums nezināmā veidā pārgrupējušies starp atlikušajām mācību iestādēm. Lai kaut kā risinātu šīs datu kopu nepilnības, ir jāizdara virkne pieņēmumu:

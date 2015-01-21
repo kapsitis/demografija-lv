@@ -12,7 +12,7 @@ library(stats)
 
 dataPath <- "/home/kalvis/demografija-lv/visc/sampledata"
 
-setwd(thePath)
+setwd(dataPath)
 source("../R/getAllData.R")
 
 
@@ -21,9 +21,9 @@ renamings <- getRenamings(dataPath)
 nonCentralizedDF <- getNonCentralizedDF(dataPath)
 
 socialIndicators <- getSocialIndicators(dataPath)
-nonCentralizedAndSocialDF <- merge(nonCentralizedDF, socialIndicators, 
-                     by.x = c("municipality","year"),
-                     by.y = c("Municipality","year"))
+# nonCentralizedAndSocialDF <- merge(nonCentralizedDF, socialIndicators, 
+#                      by.x = c("municipality","year"),
+#                      by.y = c("Municipality","year"))
 
 
 
@@ -37,10 +37,9 @@ viisDati <- getViisDati(dataPath)
 myMun <- sapply(as.vector(schoolPop$SchoolName), findMunBySch)
 schoolPop$Municipality <- myMun
 #schoolPop$Used <- rep(0,times=nrow(schoolPop))
-renNumber <- as.vector(nonCentralizedAndSocialDF$renamed)
-nonCentralizedAndSocialDF$studentNum <- sapply(renNumber,getStudentNum)
-nonCentralizedAndSocialDF$weightedResult <- 
-  nonCentralizedAndSocialDF$result * nonCentralizedAndSocialDF$studentNum
+renNumber <- as.vector(nonCentralizedDF$renamed)
+nonCentralizedDF$studentNum <- sapply(renNumber,getStudentNum)
+nonCentralizedDF$weightedResult <- nonCentralizedDF$result * nonCentralizedDF$studentNum
 
 
 # df1 <- aggregate(totalExaminees ~ municipality + year + subject, nonCentralizedAndSocialDF, sum)
@@ -66,17 +65,29 @@ theSubject <- "MAT9"
 
 # fSchoolData <- nonCentralizedAndSocialDF[nonCentralizedAndSocialDF$year == gg & 
 #                                            nonCentralizedAndSocialDF$subject == theSubject,]
-fSchoolData <- subset(nonCentralizedAndSocialDF, year == gg & subject == theSubject)
+fSchoolData <- subset(nonCentralizedDF, year == gg & subject == theSubject)
 
 aggSchoolData <- aggregate(studentNum ~ municipality, fSchoolData, sum)
+aggSchoolResult <- aggregate(weightedResult ~ municipality, fSchoolData, sum)
 
+aggSchoolFull <- merge(aggSchoolData, aggSchoolResult, 
+                       by.x = "municipality", by.y = "municipality")
+aggSchoolFull$avg <- aggSchoolFull$weightedResult/aggSchoolFull$studentNum
+siCurrent <- socialIndicators[socialIndicators$year=="2014",]
 
+aggSchoolWithSocial <- merge(aggSchoolFull, siCurrent, 
+                             by.x = "municipality", by.y="Municipality")
+aggSchoolWithSocial$pointSize <- 2*sqrt(aggSchoolWithSocial$studentNum)
+regionData <- getRegionData(dataPath)
+aggSchoolUltimate <- merge(aggSchoolWithSocial, regionData, 
+                           by.x="municipality", by.y="municipality")
 
-aggSchoolData <- aggregate(result ~ municipality, fSchoolData, mean)
-sbr <- getSocialByRegion(dataPath)
-fullSchools <- merge(aggSchoolData, sbr, 
-                     by.x = "municipality",
-                     by.y = "municipality")
+# 
+# aggSchoolData <- aggregate(result ~ municipality, fSchoolData, mean)
+# sbr <- getSocialByRegion(dataPath)
+# fullSchools <- merge(aggSchoolData, sbr, 
+#                      by.x = "municipality",
+#                      by.y = "municipality")
 
 theColors <- list("Riga city" = "#FF2F2F", 
                   "Latgale region" = "#3F4FFF", 
@@ -88,43 +99,46 @@ theColors <- list("Riga city" = "#FF2F2F",
 
 myColors <- c("#2FBFD5","#3F4FFF", "#FF2F2F", "#68FF5F","#FF982F", "#D5FF2F" )
 
-fullSchools$theColor <- sapply(as.vector(fullSchools$region), function(idx) { theColors[[idx]]})
+aggSchoolUltimate$theColor <- sapply(as.vector(aggSchoolUltimate$region), function(idx) { theColors[[idx]]})
 
-fullSchools$pointSize <- sapply(as.vector(fullSchools$region), function(idx) { sample(1:10, 1) })
+plot(aggSchoolUltimate$FemaleRatio, 
+     aggSchoolUltimate$avg, 
+     col="black",
+     bg=aggSchoolUltimate$theColor, 
+     lwd=1,
+     pch=21,
+     xlab="Darba meklētāji %", 
+     ylab="MAT9 rezultāti %")
+title("2014.g. 9.kl. matemātika un bezdarbs pašvaldībās")
+lines(lowess(aggSchoolUltimate$FemaleRatio,aggSchoolUltimate$avg), col="blue")
 
-#   plot(fullSchools$jobless, 
-#        fullSchools$result, 
-#        col="black",
-#        circles=fullSchools$size,
-#        bg=fullSchools$theColor, 
-#        lwd=1,
-#        pch=21,
-#        xlab="Darba meklētāji %", 
-#        ylab="MAT9 rezultāti %")
-#   title("2014.g. 9.kl. matemātika un bezdarbs pašvaldībās")
+
+
+
+
+
+
 ourTitle <- "Necentralizētie eksāmeni un bezdarbs pašvaldībās"
 ourSubtitle <- "2014.g., 9.kl. matemātika"
 
 
-ggplot(fullSchools, aes(x=jobless, y=result, fill=region)) +
+ggplot(aggSchoolUltimate, aes(x=UnemploymentRate, y=avg, fill=region)) +
   geom_point(shape=21, aes(size = pointSize)) +
-#  geom_point() +
+  #  geom_point() +
   
   scale_x_continuous(name="Darba meklētāji %",
                      minor_breaks=seq(0, 27.5, by=2.5), breaks=seq(0,25,by=5)) +
-  scale_y_continuous(name="MAT9 rezultāts% (svērts vidējais starp pašvaldībā esošajām skolām)", 
+  scale_y_continuous(name="MAT9 rezultāts% (svērts vidējais skolām pašvaldībā)", 
                      minor_breaks=seq(40,80,by=5), breaks=seq(40,80,by=10)) +
   ggtitle(bquote(atop(.(ourTitle), atop(italic(.(ourSubtitle)), "")))) +
   theme(
     panel.background = element_rect(fill = 'white', colour = 'darkgreen'),
-    legend.position="none",
+    #    legend.position="none",
     plot.title = element_text(size = 20, face = "bold", colour = "black", vjust = -1),
     panel.grid.minor = element_line(colour="lightgray", size=0.5, linetype="dotted"),
     panel.grid.major = element_line(colour="black", size=0.5, linetype="dotted")
   ) +
-  scale_fill_manual(values=myColors)
-
-
+  scale_fill_manual(values=myColors) 
 #  geom_smooth(method=lm,  se=FALSE) 
 
 

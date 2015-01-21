@@ -183,21 +183,18 @@ findMunBySch <- function(sch) {
 
 
 
-### DEPRECATED
-# getSocialByRegion <- function(path) {
-#   setwd(path) 
-#   sbr <- read.table(
-#     file="social-indicators-by-region.csv", 
-#     header=FALSE,
-#     sep=",",
-#     row.names=NULL,  
-#     col.names=c("Num","municipality","region",
-#                 "jobless","income",
-#                 "schools","visc_code"),
-#     skip=1)
-#   sbr$jobless <- as.numeric(sub("%","",sbr$jobless))
-#   return(sbr)
-# }
+
+getRegionData <- function(path) {
+  setwd(path) 
+  sbr <- read.table(
+    file="region-data.csv", 
+    header=FALSE,
+    sep=",",
+    row.names=NULL,  
+    col.names=c("municipality","region","schools"),
+    skip=1)
+  return(sbr)
+}
 
 
 
