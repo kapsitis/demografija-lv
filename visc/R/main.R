@@ -77,17 +77,10 @@ siCurrent <- socialIndicators[socialIndicators$year=="2014",]
 
 aggSchoolWithSocial <- merge(aggSchoolFull, siCurrent, 
                              by.x = "municipality", by.y="Municipality")
-aggSchoolWithSocial$pointSize <- 2*sqrt(aggSchoolWithSocial$studentNum)
+aggSchoolWithSocial$pointSize <- (aggSchoolWithSocial$studentNum)^0.8
 regionData <- getRegionData(dataPath)
 aggSchoolUltimate <- merge(aggSchoolWithSocial, regionData, 
                            by.x="municipality", by.y="municipality")
-
-# 
-# aggSchoolData <- aggregate(result ~ municipality, fSchoolData, mean)
-# sbr <- getSocialByRegion(dataPath)
-# fullSchools <- merge(aggSchoolData, sbr, 
-#                      by.x = "municipality",
-#                      by.y = "municipality")
 
 theColors <- list("Riga city" = "#FF2F2F", 
                   "Latgale region" = "#3F4FFF", 
@@ -101,16 +94,18 @@ myColors <- c("#2FBFD5","#3F4FFF", "#FF2F2F", "#68FF5F","#FF982F", "#D5FF2F" )
 
 aggSchoolUltimate$theColor <- sapply(as.vector(aggSchoolUltimate$region), function(idx) { theColors[[idx]]})
 
-plot(aggSchoolUltimate$FemaleRatio, 
-     aggSchoolUltimate$avg, 
-     col="black",
-     bg=aggSchoolUltimate$theColor, 
-     lwd=1,
-     pch=21,
-     xlab="Darba meklētāji %", 
-     ylab="MAT9 rezultāti %")
-title("2014.g. 9.kl. matemātika un bezdarbs pašvaldībās")
-lines(lowess(aggSchoolUltimate$FemaleRatio,aggSchoolUltimate$avg), col="blue")
+aggSchoolUltimate <- aggSchoolUltimate[with(aggSchoolUltimate,order(-studentNum)),]
+
+# plot(aggSchoolUltimate$FemaleRatio, 
+#      aggSchoolUltimate$avg, 
+#      col="black",
+#      bg=aggSchoolUltimate$theColor, 
+#      lwd=1,
+#      pch=21,
+#      xlab="Darba meklētāji %", 
+#      ylab="MAT9 rezultāti %")
+# title("2014.g. 9.kl. matemātika un bezdarbs pašvaldībās")
+# lines(lowess(aggSchoolUltimate$FemaleRatio,aggSchoolUltimate$avg), col="blue")
 
 
 
@@ -124,7 +119,11 @@ ourSubtitle <- "2014.g., 9.kl. matemātika"
 
 ggplot(aggSchoolUltimate, aes(x=UnemploymentRate, y=avg, fill=region)) +
   geom_point(shape=21, aes(size = pointSize)) +
-  #  geom_point() +
+  guides(colour = guide_legend(override.aes = list(size=3,linetype=0))) +
+  scale_size_area(max_size = 16, 
+                  breaks=c(8,40,189,910), 
+                  labels=c("15","100","700","5000"), 
+                  name="Eks\u0101menu skaits") +
   
   scale_x_continuous(name="Darba meklētāji %",
                      minor_breaks=seq(0, 27.5, by=2.5), breaks=seq(0,25,by=5)) +
@@ -133,14 +132,21 @@ ggplot(aggSchoolUltimate, aes(x=UnemploymentRate, y=avg, fill=region)) +
   ggtitle(bquote(atop(.(ourTitle), atop(italic(.(ourSubtitle)), "")))) +
   theme(
     panel.background = element_rect(fill = 'white', colour = 'darkgreen'),
-    #    legend.position="none",
     plot.title = element_text(size = 20, face = "bold", colour = "black", vjust = -1),
     panel.grid.minor = element_line(colour="lightgray", size=0.5, linetype="dotted"),
     panel.grid.major = element_line(colour="black", size=0.5, linetype="dotted")
   ) +
-  scale_fill_manual(values=myColors) 
-#  geom_smooth(method=lm,  se=FALSE) 
-
+  scale_fill_manual(values=myColors, name="Re\u0123ioni",
+                    labels=c("Kurzeme", 
+                             "Latgale", 
+                             "R\u012Bga",
+                             "Pier\u012Bga",
+                             "Vidzeme",
+                             "Zemgale")) +
+#  scale_size_continuous(breaks=c(10,100,1000), labels=c("A","B","C"), name="Eks\u0101menu skaits") +
+#  scale_fill_manual(values=pointSize, name="Eksamin\u0113jamie") + 
+  #guides(colour = guide_legend(override.aes = list(size=8, linetype=0))) +
+  geom_smooth(method = "loess", size = 0.6, fill=NA) 
 
 
 
