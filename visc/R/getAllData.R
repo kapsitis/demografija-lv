@@ -2,8 +2,6 @@
 #### Caller specifies working directory
 ####
 
-
-
 # neSchools <- c()
 # neMunicipalities <- c()
 # for (i in 1:nrow(munAndSch)) {
@@ -42,6 +40,56 @@ extractRegion <- function(address) {
 }
 
 
+factorNames <- c("UnemploymentRate",
+                 "DependencyRatio",
+                 "PopulationChangePerYear",
+                 "PerCapitaIncomeTax",
+                 "ExpenditurePerStudent",
+                 "PerCapitaRealEstateTax",
+                 "FemaleRatio")
+
+examTypes <- list(ANG9 = "9.kl. angļu valoda",
+                  INF12 = "12.kl. informātika",
+                  MAT9 = "9.kl. matemātika", 
+                  VES9 = "9.kl. informātika",
+                  VLL9 = "9.kl. latviešu valoda")
+
+indicatorsShort <- list(UnemploymentRate = "bezdarbs",
+                        DependencyRatio = "demogr.slodze", 
+                        PopulationChangePerYear = "iedz.sk.izmaiņa",
+                        PerCapitaIncomeTax = "IIN uz 1 iedz.",
+                        ExpenditurePerStudent = "1 skolēna izmaksas",
+                        PerCapitaRealEstateTax = "NĪ uz 1 iedz.",
+                        FemaleRatio = "sieviešu %")
+
+xScales <- list(
+  UnemploymentRate = scale_x_continuous(
+    name="Darba meklētāji %", 
+    breaks=seq(5,25,by=5),
+    minor_breaks=seq(0,27.5,by=2.5)),
+  DependencyRatio = scale_x_continuous(
+    name="Apgādājamie uz 1000 darbspējas vecuma iedz.", 
+    breaks=seq(450,650,by=50)),
+  PopulationChangePerYear = scale_x_continuous(
+    name="Iedz. skaita izmaiņa uz 1000 iedz. gadā", 
+    breaks=seq(-3,3,by=1)),
+  PerCapitaIncomeTax = scale_x_log10(
+    name="IIN uz 1 iedz. gadā", 
+    breaks=c(200,400,800)), 
+  ExpenditurePerStudent = scale_x_continuous(
+    name="Izdevumi uz 1 skolēnu gadā", 
+    breaks=seq(1000,3000,by=1000),
+    minor_breaks=seq(500,3500,by=1000)),
+  PerCapitaRealEstateTax = scale_x_log10(
+    name="NĪ uz 1 iedz. gadā", 
+    breaks=c(25,50,100,200)),
+  FemaleRatio = scale_x_continuous(
+    name="Sieviešu īpatsvars", 
+    breaks=seq(49,55,by=1),
+    minor_breaks=seq(48.5,55.5,by=1))
+)
+
+
 ### Read social indicators from RAIM.gov.lv datasets (years 2009-2013)
 getSocialIndicators <- function(path) {
   setwd(path) 
@@ -53,14 +101,7 @@ getSocialIndicators <- function(path) {
       header=FALSE,
       sep=",",
       row.names=NULL,  
-      col.names=c("Municipality",
-                  "UnemploymentRate",
-                  "DependencyRatio",
-                  "PopulationChangePerYear",
-                  "PerCapitaIncomeTax",
-                  "ExpenditurePerStudent",
-                  "PerCapitaRealEstateTax",
-                  "FemaleRatio"),
+      col.names=c("Municipality",factorNames),
       skip=1
     )
     pathSegments <- strsplit(filename,"/")[[1]]

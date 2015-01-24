@@ -38,7 +38,7 @@ Skolēnu skaita novērtēšanai izmantosim datu kopu, kura, visticamāk, eksport
     + Pašvaldības budžeta izdevumi izglītībai uz vienu izglītojamo (EUR, RAIM apr.)
     + Pašvaldības budžeta NĪN ieņēmumi uz vienu iedzīvotāju (EUR, RAIM apr.)
     + Sieviešu īpatsvars (%, RAIM apr.)
-    
+
 Salīdzināšanai var izmantot arī šādus datu avotus:
 
 * [CSP dati](#bibCSP) aplūko nodarbinātības rādītājus kopā ar citiem demogrāfisku datu atribūtiem. Bezdarba dati ir pieejami 6 statistiskajos reģionos (Rīgas reģions, Pierīgas reģions, Vidzemes reģions, Kurzemes reģions, Zemgales reģions, Latgales reģions) - visticamāk domāti [Eiropas Savienības NUTS-3 reģioni](http://en.wikipedia.org/wiki/Statistical_regions_of_Latvia). 
@@ -91,23 +91,46 @@ Skolas nosaukums nevar viennozīmīgi identificēt mācību iestādi, jo vairāk
     + Rīgas 1. Tālmācības vidusskola, Reģ.Nr.: 4515802999. Nosaukumā ir vārds "Rīga", reģistrācijas adrese arī ir Iecavas novadā, bet citā adresē nekā "Rīgas Tālmācības vidusskola.
 * **Pazuduši eksāmenu rezultātu ieraksti?**
     + Strenču novadā 2014.g. nav nevienas skolas, kurā būtu MAT9 eksāmena rezultāti; citos 9.klases priekšmetos rezultāti ir - tātad vajadzētu būt arī skolēniem, kuri nezkāpēc nekārtoja 9.klašu matemātikas pārbaudes darbu.
+* **Sociālo indikatoru pieejamība**
+    + Visur mūsu pārskatos eksāmeni, kas notikuši gadā $G$ ir aplūkoti kombinācijā ar sociālajiem indikatoriem par iepriekšējo gadu $G-1$. Piemēram, 2014.gada pavasarī notikušo 9.klases necentralizēto eksāmenu rezultāti aplūkoti kopā ar 2013.gada rezultātiem par bezdarbu utml. Šādi ir jārīkojas tādēļ, ka eksāmena kārtošanas brīdī attiecīgais gads vēl nav beidzies un statistikas dati par šo gadu vēl nav pieejami.
+    + **PopulationChangePerYear** (pašvaldības iedzīvotāju skaita izmaiņa uz 1000 iedzīvotājiem gadā) dati pieejami sākot ar 2011.gadu, bet **ExpenditurePerStudent** (izdevumi uz vienu skolēnu gadā) dati pieejami sākot ar 2012.gadu. Tās ir RAIM datu kopas īpatnības - demogrāfiskie dati noteikti ir apkopoti arī par agrāku laiku, bet mēs tos pagaidām neizmantojam šajā pārskatā.
+    + Sieviešu īpatsvars RAIM datu kopā pieņem neparastas vērtības: 2009.gadā (Rīga - 44.51%, Daugavpils - 44.74%); 2012.g. (Salas novads - 28.87%; Neretas novads - 57.17%). Tās izskatās pēc rupjām kļūdām un jūtami izbojā dažu grafiku izskatu. Salas un Neretas novados 2012.g. vērtība (28.87%) aizstāta ar 50%; savukārt 2009.g. dati ir tik nepareizi, ka šis gads netiek lietots vispār, lai apskatītu 2010.g. eksāmena rezultātus atkarībā no sieviešu īpatsvara. Jāapsver Iedzīvotāju reģistra (PMLP) vai CSP datu izmantošana. 
     
+Sekojoša tabula katram no 7 sociālajiem indikatoriem uzskaitām gadus, par kuriem ir ģenerēti pārskati un grafiki. (Lūdzam ievērot, ka norādītais gads ir eksāmena kārtošanas gads; savukārt sociālie indikatori ir apkopoti par iepriekšējo gadu - t.i. 2010.g. eksāmena dati faktiski salīdzināti ar 2009.g. sociālajiem indikatoriem.)
+
+```{r someTable, echo=FALSE}
+library(knitr)
+tableDF <- data.frame(Indikators = c("UnemploymentRate",
+                 "DependencyRatio",
+                 "PopulationChangePerYear",
+                 "PerCapitaIncomeTax",
+                 "ExpenditurePerStudent",
+                 "PerCapitaRealEstateTax",
+                 "FemaleRatio"), 
+                 Y2010 = c("Jā", "Jā", "**Nē**", "Jā", "**Nē**", "Jā", "**Nē**"),
+                 Y2011 = c("Jā", "Jā", "Jā", "Jā", "**Nē**", "Jā", "Jā"),
+                 Y2012 = c("Jā", "Jā", "Jā", "Jā", "Jā", "Jā", "Jā"),
+                 Y2013 = c("Jā", "Jā", "Jā", "Jā", "Jā", "Jā", "Jā"),
+                 Y2014 = c("Jā", "Jā", "Jā", "Jā", "Jā", "Jā", "Jā")
+                 )
+kable(tableDF)
+```
 
 
 ## Pieņēmumi
 
 Datu kopas, no kurām iegūtas vizualizācijas ir nepilnīgi savietojamas. Skolēnu skaits klasēs ir zināms par 2014.gada 1.septembri (820 dažādām skolām); turklāt tikai par pirmajām 9 klasēm. Savukārt necentralizētos eksāmenus no 2010. līdz 2014.gadam kārtoja 910 dažādu skolu audzēkņi. Viņi 2014-09-01 datos (tabulā  **Statistika_skoleni_IZM.xlsx**) neparādās, jo pamatskolu ir jau beiguši. Šajā laikā notikušas daudzas skolu reorganizācijas. Skolēnu un mācību iestāžu skaits jūtami sarucis, turklāt skolēni mums nezināmā veidā pārgrupējušies starp atlikušajām mācību iestādēm. Lai kaut kā risinātu šīs datu kopu nepilnības, ir jāizdara virkne pieņēmumu:
 
-* **Pieņēmums par skolēnu skaita vienmērību laikā:** Ja 2014.g. 1.septembrī kādas skolas 1.-9.klasē mācās $K1,K2,\ldots,K_9$ skolēni, tad pieņemam, ka 2010.-2014.g. pavasarī 9.klases eksāmenu kārtoja $\frac{K1+K2+\ldots+K9}{9}$ skolēni - t.i. pašreizējā klašu aizpildījuma vidējais aritmētiskais. Ja $K7+K8+K9 = 0$, tad pieņemam, ka attiecīgā skola ir sākumskola un 9.klases beidzēju tajā nav bijis vispār. Šis pieņēmums, protams, nav precīzs straujās depopulācijas dēļ. No šī pieņēmuma varētu rasties maldīgi secinājumi, ja depopulācija dažādās pašvaldībās ir notikusi ļoti nevienmērīgi. Šo kļūdu varētu mēģināt koriģēt izmantojot CSP jeb iedzīvotāju reģistra datus - un ekstrapolēt skolēnu skaitu atmuguriski pa laika asi. Tomēr jāņem vērā, ka (saskaņā ar LU profesora Mihaila Hazana secinājumiem) paši iedzīvotāju reģistra dati ir ļoti neprecīzi. Tādēļ šāda korekcija nav veikta.
+* **Pieņēmums par skolēnu skaita vienmērību laikā:** Ja 2014.g. 1.septembrī kādas skolas 1.-9.klasē mācās $K_1,K_2,\ldots,K_9$ skolēni, tad pieņemam, ka 2010.-2014.g. pavasarī 9.klases eksāmenu kārtoja $\frac{K_7+K_8+K_9}{3}$ skolēni - t.i. pašreizējā klašu aizpildījuma vidējais aritmētiskais. Ja $K7+K8+K9 = 0$, tad pieņemam, ka attiecīgā skola ir sākumskola un 9.klases beidzēju tajā nav bijis vispār. Šis pieņēmums, protams, nav precīzs straujās depopulācijas dēļ. Šo kļūdu varētu mēģināt koriģēt izmantojot CSP jeb iedzīvotāju reģistra datus - un ekstrapolēt skolēnu skaitu atmuguriski pa laika asi. Tomēr jāņem vērā, ka (saskaņā ar LU profesora Mihaila Hazana secinājumiem) paši iedzīvotāju reģistra dati ir ļoti neprecīzi. Tādēļ šāda korekcija nav veikta.
 * **Pieņēmums par skolēnu skaita vienmērīgu pārdalīšanos pašvaldības ietvaros:** Skolas pēdējo 5 gadu laikā nereti mainījušas nosaukumus, reorganizētas, dalītas vai apvienotas ar citām skolām. Ja kādā pašvaldībā $P$ kādā no gadiem $G \in \{2010, 2011, 2012, 2013, 2014\}$ ir eksistējušas skolas $X_1, X_2,\ldots,X_m$, kuras piedalījās $G$ gada eksāmenā, bet 2014-09-01 pārskatā tās vairs neeksistē, tad meklē visas tās skolas, kuras šajā pārskatā parādījās no jauna un skolēnu skaitu vienādās daļās sadala starp $X_1, X_2,\ldots,X_m$. Arī šis var būt ļoti neprecīzs pieņēmums, bet mums nav nekādu ziņu par to, kā skolēni migrējuši starp mācību iestādēm to reorganizācijas brīžos. Tādēļ jāpieņem, ka viņi to darījuši vienādās porcijās.  
 
 ## Pārskati
 ### Sagatavošanās datu vizualizācijai
 
-* **Datu faili:** 
-* **KnitR šablons:**
-* **R un RStudio:** 
-* **Imagemagick:** 
+* **Datu faili:** [sampledata.tar.gz](sampledata.tar.gz)
+* **KnitR šablons:** [social-issues-and-exams-in-municipalities.rmd](social-issues-and-exams-in-municipalities.rmd)
+* **R un RStudio:** [Uzstādīšanas instrukcija](http://odo.lv/Recipes/RStudio); sk. arī [R](http://www.r-project.org/); [RStudio](http://www.rstudio.com/)
+* **Imagemagick:** [Uzstādīšanas instrukcija](http://odo.lv/Recipes/Imagemagick)
 
 1. Uzstāda R, RStudio un Imagemagick
 2. Atarhivē datu failus jebkurā direktorijā
@@ -121,6 +144,8 @@ Datu kopas, no kurām iegūtas vizualizācijas ir nepilnīgi savietojamas. Skol�
 MAT9 eksāmens izraudzīts tādēļ, ka šo eksāmenu parasti labo ārpus mācību iestādes - t.i. eksāmena rezultātu mazāk iespaido sistemātiskās kļūdas, subjektīvisms darbu labošanā vai tml. 
 
 #### MAT9 eksāmenu rezultāti un pašvaldības bezdarba līmenis
+
+
 
 #### MAT9 eksāmenu rezultāti un pašvaldības bezdarba līmenis (nelineārs modelis)
 
@@ -138,7 +163,10 @@ MAT9 eksāmens izraudzīts tādēļ, ka šo eksāmenu parasti labo ārpus mācī
 
 ## Bibliogrāfija
 
-* [SCP Dati](http://data.csb.gov.lv/pxweb/lv/Sociala/Sociala__ikgad__nodarb/?tablelist=true&rxid=61117407-b805-4ae2-8c61-6f7dc521a42a): **Iedzīvotāji un sociālie procesi** > **Ikgadējie statistikas dati** >> **Nodarbinātība un bezdarbs**. 
+* [RAIM Dati](http://raim.gov.lv/pub/#/) - atvērt cilni **Datu atlase** (no šejienes ņemti sociālie indikatori)
+* [VIIS Dati par iestādēm](https://viis.lv/Pages/Institutions/Search.aspx)
+* [VISC Dati par 2014.g.](http://visc.gov.lv/vispizglitiba/eksameni/statistika/2014/) - un arī iepriekšējo gadu rezultāti (2010.-2014.g.)
+* [SCP Dati](http://data.csb.gov.lv/pxweb/lv/Sociala/Sociala__ikgad__nodarb/?tablelist=true&rxid=61117407-b805-4ae2-8c61-6f7dc521a42a): **Iedzīvotāji un sociālie procesi** > **Ikgadējie statistikas dati** >> **Nodarbinātība un bezdarbs**.
 * [NVA Dati](http://www.nva.gov.lv/index.php?cid=6) Pārskats "Bezdarba rādītāji reģionos un pilsētās 2014.gada novembrī salīdzinājumā ar 2014.gada oktobri"
 
 *This report is available under a [Creative Commons License](http://creativecommons.org/licenses/by/4.0/deed.en_US)*

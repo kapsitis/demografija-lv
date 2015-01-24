@@ -3,6 +3,9 @@
 */*.md
 /bin
 /shiny/math/*
+/visc/sampledata.tar.gz
+/visc/sampledata/temp/
+
 
 .Rproj.user
 .Rhistory
