@@ -143,13 +143,10 @@ Datu kopas, no kurām iegūtas vizualizācijas ir nepilnīgi savietojamas. Skol�
 
 MAT9 eksāmens izraudzīts tādēļ, ka šo eksāmenu parasti labo ārpus mācību iestādes - t.i. eksāmena rezultātu mazāk iespaido sistemātiskās kļūdas, subjektīvisms darbu labošanā vai tml. 
 
-#### MAT9 eksāmenu rezultāti un pašvaldības bezdarba līmenis
+#### MAT9 Eksāmenu rezultāti un bezdarbs pašvaldībā
 
 
-
-#### MAT9 eksāmenu rezultāti un pašvaldības bezdarba līmenis (nelineārs modelis)
-
-#### MAT9 eksāmenu rezultāti un pašvaldības demogrāfiskā slodze
+#### Eksāmenu rezultāti un pašvaldības demogrāfiskā slodze
 
 #### MAT9 eksāmenu rezultāti un pašvaldības iedzīvotāju skaita izmaiņa gadā
 
