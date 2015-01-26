@@ -1,8 +1,8 @@
 package lv.ddgatve.demografija.main
 
-import java.io.File
-import lv.ddgatve.scp.NewScpTo
-import scala.xml.XML
+import java.io.File;
+import lv.ddgatve.scp.NewScpTo;
+import scala.xml.XML;
 
 object DemografijaMain {
   def listDirectoryByPattern(path: String, regex: String): List[File] = {

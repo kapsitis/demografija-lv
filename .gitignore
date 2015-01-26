@@ -5,7 +5,8 @@
 /shiny/math/*
 /visc/sampledata.tar.gz
 /visc/sampledata/temp/
-
+/visc/sampledata/temp2/
+/lib/*.jar
 
 .Rproj.user
 .Rhistory

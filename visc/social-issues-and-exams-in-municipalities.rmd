@@ -95,6 +95,8 @@ Skolas nosaukums nevar viennozīmīgi identificēt mācību iestādi, jo vairāk
     + Visur mūsu pārskatos eksāmeni, kas notikuši gadā $G$ ir aplūkoti kombinācijā ar sociālajiem indikatoriem par iepriekšējo gadu $G-1$. Piemēram, 2014.gada pavasarī notikušo 9.klases necentralizēto eksāmenu rezultāti aplūkoti kopā ar 2013.gada rezultātiem par bezdarbu utml. Šādi ir jārīkojas tādēļ, ka eksāmena kārtošanas brīdī attiecīgais gads vēl nav beidzies un statistikas dati par šo gadu vēl nav pieejami.
     + **PopulationChangePerYear** (pašvaldības iedzīvotāju skaita izmaiņa uz 1000 iedzīvotājiem gadā) dati pieejami sākot ar 2011.gadu, bet **ExpenditurePerStudent** (izdevumi uz vienu skolēnu gadā) dati pieejami sākot ar 2012.gadu. Tās ir RAIM datu kopas īpatnības - demogrāfiskie dati noteikti ir apkopoti arī par agrāku laiku, bet mēs tos pagaidām neizmantojam šajā pārskatā.
     + Sieviešu īpatsvars RAIM datu kopā pieņem neparastas vērtības: 2009.gadā (Rīga - 44.51%, Daugavpils - 44.74%); 2012.g. (Salas novads - 28.87%; Neretas novads - 57.17%). Tās izskatās pēc rupjām kļūdām un jūtami izbojā dažu grafiku izskatu. Salas un Neretas novados 2012.g. vērtība (28.87%) aizstāta ar 50%; savukārt 2009.g. dati ir tik nepareizi, ka šis gads netiek lietots vispār, lai apskatītu 2010.g. eksāmena rezultātus atkarībā no sieviešu īpatsvara. Jāapsver Iedzīvotāju reģistra (PMLP) vai CSP datu izmantošana. 
+    + Demogrāfiskā slodze par 2012.g. Salas novadā ir norādīta 231. Tā aizstāta ar 471 (kas ir vidējā vērtība šim rādītājam visos pārējos gados). 
+    + Iedzīvotāju skaita pieaugums par 2011.g. un 2012.g. ir aizstāts šādos novados - Ozolnieku, Salas, Balvu un Neretas - RAIM dati satur neticamas vērtības (-43%, 75%, utml.). Tai vietā dati ir lineāri interpolēti, izmantojot vērtības par 2010.g. un 2013.g. 
     
 Sekojoša tabula katram no 7 sociālajiem indikatoriem uzskaitām gadus, par kuriem ir ģenerēti pārskati un grafiki. (Lūdzam ievērot, ka norādītais gads ir eksāmena kārtošanas gads; savukārt sociālie indikatori ir apkopoti par iepriekšējo gadu - t.i. 2010.g. eksāmena dati faktiski salīdzināti ar 2009.g. sociālajiem indikatoriem.)
 
@@ -139,24 +141,129 @@ Datu kopas, no kurām iegūtas vizualizācijas ir nepilnīgi savietojamas. Skol�
 5. RStudio spiež pogu **Knit HTML**, lai iegūtu esošo pārskatu
 
 
+### Korelācijas koeficienti
+
+Korelācijas koeficients populācijā ar diviem atribūtiem ir skaitlis intervālā $[-1,1]$, kas parāda šo atribūtu izmaiņu savstarpējo saistību. Mūsu gadījumā populācija ir Latvijas 119 pašvaldības; viens no atribūtiem ir sociālais indikators (bezdarba līmenis, utml.), otrs atribūts ir 9.kl. eksāmena vidējais rezultāts attiecīgajā pašvaldībā. Pavisam apskatām 4 eksāmenus - ANG9 (angļu valoda), MAT9 (matemātika), VES9 (vēsture) un VLL9 (latviešu valoda). Ja, palielinot vienu atribūtu, parasti palielinās arī otrs atribūts, tad korelācijas koeficients ir pozitīvs ($\rho > 0$); savukārt, ja palielinot vienu atribūtu, otrs atribūts parasti samazinās, tad korelācijas koeficients ir negatīvs ($\rho < 0$). Ja nav novērojama nekāda mijiedarbība, tad $\rho = 0$. 
+
+Korelācijas koeficients, kurš atšķirīgs no nulles, nenozīmē cēloņsakarību. Vēl jo vairāk - nelielai populācijai (pašvaldību pavisam ir 119), ar aptuveni 3% procentu varbūtību izrādīsies, ka $|\rho| > 0.2$, kaut arī abi atribūti mainītos neatkarīgi viens no otra. Līdz ar to, kaut kādu interesi izraisa vienīgi tie korelācijas koeficienti, kas pārsniedz 0.2 - tie parasti nozīmē kaut kādu kopsakarību nevis tikai sagadīšanos. 
+
+No zemāk dotajām tabulām izriet, ka angļu valodas (ANG9) eksāmena rezultātam ir pozitīva korelācija ar vidējo IIN un NĪ nodokli, ko maksā 1 pašvaldības iedzīvotājs, kā arī ar ikgadējo iedzīvotāju skaita pieaugumu pašvaldībā (bagātākās pašvaldības parasti ir ar nedaudz labākiem angļu valodas eksāmena rezultātiem; tāpat arī tās pašvaldības, kurās iedzīvotāju skaits pieaug vai vismaz strauji nesamazinās). Citiem mācību priekšmetiem sakarība ar nodokļiem un iedzīvotāju skaita izmaiņām ir krietni mazākas vai vispār nebūtiskas. 
+
+Matemātikas eksāmenam (MAT9) ir vāji izteikta pozitīva korelācija ar bezdarba līmeni - augstāks bezdarbs kādā pašvaldībā biežāk sastopams kopā ar labiem rezultātiem 9.kl. matemātikas eksāmenā. Tāpat arī matemātikas eksāmena rezultātam ir pozitīva korelācija ar sieviešu īpatsvaru attiecīgajā pašvaldībā. Tomēr šādas korelācijas var norādīt nevis uz tiešu cēloņsakarību, bet uz kāda (mums nezināma) faktora līdzdalību. Latgales skolām tradicionāli ir labi sasniegumi matemātikā; Latgalē ir arī augsts bezdarba līmenis. Aplūkojot citas (ne-Latgales) pašvaldības matemātikas un bezdarba kopsakarība vairs nav redzama. Gluži tāpat - augstāks sieviešu īpatsvars var norādīt uz augstāku urbanizācijas līmeni, kas parasti ir labvēlīgs sekmēm matemātikā. 
+
+Dažiem citiem rādītājiem (piemēram, demogrāfiskajai slodzei jeb "dependency ratio" - t.i. cilvēku īpatsvaram darba spējīgajā vecumā 15-62) vai arī pašvaldības izdevumiem uz vienu skolēnu gadā ir niecīgs iespaids uz jebkādu eksāmenu rezultātiem. Visu šo iemeslu dēļ mēs nevaram runāt par to, ka būtu izdevies atrast kaut kādu kopsakaru starp sociālajiem indikatoriem un necentralizēto (9.kl.) eksāmenu rezultātiem. Varētu vienīgi teikt, kur ir priekš meklēšanas mazliet "siltāks" - angļu valodas gadījumā varētu runāt par pārticības līmeņa iespaidu uz eksāmena rezultātu; matemātikas gadījumā - par reģionālām (bezdarba) vai urbanizācijas (sieviešu koncentrācijas) izraisītām atšķirībām.
+
+#### Angļu valoda (ANG9)
+
+```{r angTable, echo=FALSE}
+setwd("/home/kalvis/demografija-lv/visc/sampledata")
+rhoFrame <- read.table(
+      file="ANG9-rho.csv", 
+      header=FALSE,
+      sep=",",
+      row.names=NULL,  
+      col.names=c("factor", 
+                  "Y2010", "Y2011", "Y2012", "Y2013", "Y2014"),
+      skip=1
+    )   
+kable(rhoFrame)
+```
+
+#### Matemātika (MAT9)
+
+```{r matTable, echo=FALSE}
+setwd("/home/kalvis/demografija-lv/visc/sampledata")
+rhoFrame <- read.table(
+      file="MAT9-rho.csv", 
+      header=FALSE,
+      sep=",",
+      row.names=NULL,  
+      col.names=c("factor", 
+                  "Y2010", "Y2011", "Y2012", "Y2013", "Y2014"),
+      skip=1
+    )   
+kable(rhoFrame)
+```
+
+
+#### Vēsture (VES9)
+
+```{r vesTable, echo=FALSE}
+setwd("/home/kalvis/demografija-lv/visc/sampledata")
+rhoFrame <- read.table(
+      file="VES9-rho.csv", 
+      header=FALSE,
+      sep=",",
+      row.names=NULL,  
+      col.names=c("factor", 
+                  "Y2010", "Y2011", "Y2012", "Y2013", "Y2014"),
+      skip=1
+    )   
+kable(rhoFrame)
+```
+
+
+#### Latviešu valoda (VLL9)
+
+```{r vllTable, echo=FALSE}
+setwd("/home/kalvis/demografija-lv/visc/sampledata")
+rhoFrame <- read.table(
+      file="VLL9-rho.csv", 
+      header=FALSE,
+      sep=",",
+      row.names=NULL,  
+      col.names=c("factor", 
+                  "Y2010", "Y2011", "Y2012", "Y2013", "Y2014"),
+      skip=1
+    )   
+kable(rhoFrame)
+```
+
 ### Vizualizāciju rezultāti
 
-MAT9 eksāmens izraudzīts tādēļ, ka šo eksāmenu parasti labo ārpus mācību iestādes - t.i. eksāmena rezultātu mazāk iespaido sistemātiskās kļūdas, subjektīvisms darbu labošanā vai tml. 
+MAT9 eksāmens likts redzamākajā vietā tādēļ, ka šo eksāmenu parasti labo ārpus mācību iestādes - t.i. eksāmena rezultātu mazāk iespaido sistemātiskās kļūdas, subjektīvisms darbu labošanā vai tml. Tomēr var apskatīt arī visu citu eksāmenu rezultātus. 
 
-#### MAT9 Eksāmenu rezultāti un bezdarbs pašvaldībā
+#### 9.kl. eksāmeni un bezdarbs
 
+[ANG9](sampledata/temp/ANG9-UnemploymentRate.gif); [MAT9](sampledata/temp/MAT9-UnemploymentRate.gif); [VES9](sampledata/temp/VES9-UnemploymentRate.gif); [VLL9](sampledata/temp/VLL9-UnemploymentRate.gif). 
 
-#### Eksāmenu rezultāti un pašvaldības demogrāfiskā slodze
+![MAT9 un bezdarbs pašvaldībās](sampledata/temp/MAT9-UnemploymentRate.gif)
 
-#### MAT9 eksāmenu rezultāti un pašvaldības iedzīvotāju skaita izmaiņa gadā
+#### 9.kl. eksāmeni un demogrāfiskā slodze
 
-#### MAT9 eksāmenu rezultāti un pašvaldības vidējais IIN uz 1 iedzīvotāju
+[ANG9](sampledata/temp/ANG9-DependencyRatio.gif); [MAT9](sampledata/temp/MAT9-DependencyRatio.gif); [VES9](sampledata/temp/VES9-DependencyRatio.gif); [VLL9](sampledata/temp/VLL9-DependencyRatio.gif).
 
-#### MAT9 eksāmenu rezultāti un pašvaldības vidējais NĪN uz 1 iedzīvotāju
+![MAT9 un demogrāfiskā slodze pašvaldībās](sampledata/temp/MAT9-DependencyRatio.gif)
 
-#### MAT9 eksāmenu rezultāti un pašvaldības izdevumi uz 1 izglītojamo
+#### 9.kl. eksāmeni un iedzīvotāju skaita izmaiņa gadā
 
-#### MAT9 eksāmenu rezultāti un sieviešu īpatsvars pašvaldībā
+[ANG9](sampledata/temp/ANG9-PopulationChangePerYear.gif); [MAT9](sampledata/temp/MAT9-PopulationChangePerYear.gif); [VES9](sampledata/temp/VES9-PopulationChangePerYear.gif); [VLL9](sampledata/temp/VLL9-PopulationChangePerYear.gif).
+
+![MAT9 un iedzīvotāju skaita izmaiņa pašvaldībās](sampledata/temp/MAT9-PopulationChangePerYear.gif)
+
+#### 9.kl. eksāmeni un vidējais IIN uz 1 iedzīvotāju
+
+[ANG9](sampledata/temp/ANG9-PerCapitaIncomeTax.gif); [MAT9](sampledata/temp/MAT9-PerCapitaIncomeTax.gif); [VES9](sampledata/temp/VES9-PerCapitaIncomeTax.gif); [VLL9](sampledata/temp/VLL9-PerCapitaIncomeTax.gif).
+
+![MAT9 un vidējais IIN uz 1 iedzīvotāju pašvaldībās](sampledata/temp/MAT9-PerCapitaIncomeTax.gif)
+
+#### 9.kl. eksāmeni un izdevumi uz 1 izglītojamo
+
+[ANG9](sampledata/temp/ANG9-ExpenditurePerStudent.gif); [MAT9](sampledata/temp/MAT9-ExpenditurePerStudent.gif); [VES9](sampledata/temp/VES9-ExpenditurePerStudent.gif); [VLL9](sampledata/temp/VLL9-ExpenditurePerStudent.gif).
+
+![MAT9 un izdevumi uz 1 izglītojamo pašvaldībās](sampledata/temp/MAT9-ExpenditurePerStudent.gif)
+
+#### 9.kl. eksāmeni un vidējais NĪN uz 1 iedzīvotāju
+
+[ANG9](sampledata/temp/ANG9-PerCapitaRealEstateTax.gif); [MAT9](sampledata/temp/MAT9-PerCapitaRealEstateTax.gif); [VES9](sampledata/temp/VES9-PerCapitaRealEstateTax.gif); [VLL9](sampledata/temp/VLL9-PerCapitaRealEstateTax.gif).
+
+![MAT9 un vidējais NĪN uz 1 iedzīvotāju pašvaldībās](sampledata/temp/MAT9-PerCapitaRealEstateTax.gif)
+
+#### 9.kl. eksāmeni un sieviešu īpatsvars
+
+[ANG9](sampledata/temp/ANG9-FemaleRatio.gif); [MAT9](sampledata/temp/MAT9-FemaleRatio.gif); [VES9](sampledata/temp/VES9-FemaleRatio.gif); [VLL9](sampledata/temp/VLL9-FemaleRatio.gif). 
+
+![MAT9 un sieviešu īpatsvars pašvaldībās](sampledata/temp/MAT9-FemaleRatio.gif)
 
 ## Bibliogrāfija
 
