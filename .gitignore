@@ -3,9 +3,12 @@
 */*.md
 /bin
 /shiny/math/*
+/visc/r-maps/*.svg
 /visc/sampledata.tar.gz
 /visc/sampledata/temp/
 /visc/sampledata/temp2/
+/visc/gridsvg/*
+/visc/jquery/*
 /lib/*.jar
 
 .Rproj.user
