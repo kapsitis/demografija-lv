@@ -37,7 +37,7 @@ library(RColorBrewer)
 
 
 setwd("/home/st/demografija-lv/visc/r-maps/")
-u.data <- read.csv("new-house.csv")
+u.data <- read.csv("newer-house.csv")
 u.data[50:55,]
 
 conservative.vowels <- c("euu","ouu","oouu","uu",
@@ -77,19 +77,20 @@ summaryString <- function(house, how, about, clouds, drought) {
 }
 
 u.data <- tbl_df(u.data)
-u.plot.data <- u.data %.%
-    group_by(Town, Latitude, Longitude) %.%
+u.plot.data <- u.data %>%
+    group_by(Town, Latitude, Longitude,region) %>%
     summarise(NUnLowered =
               sum(House %in% conservative.vowels,
                   How %in% conservative.vowels,
                   About %in% conservative.vowels,
                   Clouds %in% conservative.vowels,
                   Drought %in% conservative.vowels),
+              M = sum(M),
               UnLoweredWds = summaryString(
                  House, How, About, Clouds, Drought),
               N = n())
 u.plot.data$N <- u.plot.data$N * 5
-head(as.data.frame(u.plot.data[20:25,]))
+head(as.data.frame(u.plot.data[1:4,]))
 
 mapdata <- map_data("worldHires", "UK")
 
@@ -115,6 +116,22 @@ geom_tooltip <- function (mapping = NULL, data = NULL, stat = "identity",
 
     rg ## (ref:return)
 }
+
+rukruk <- read.table(
+  file="tmp.csv", 
+  header=FALSE,
+  sep=",",
+  row.names=NULL,  
+  col.names=c("Town",
+              "Latitude",
+              "Longitude",
+              "region",
+              "NUnLowered",
+              "M",
+              "UnLoweredWds",
+              "N"),
+  skip=1)
+
 
 jscript <- '
 function showTooltip(evt, label) {
@@ -224,24 +241,51 @@ for (i = 0; i < points.length; i++) {
 }
 '
 
-svgDest <- "england.svg"
-gridsvg(svgDest,exportJS="inline",addClasses=TRUE,width=8,height=6)
-ggplot(u.plot.data, aes(x = Longitude, y = Latitude)) +
-    geom_tooltip(aes(tooltip = paste0(
-                         "<b>Words not lowered in ", Town,
-                         ":</b><br />",
-                         UnLoweredWds),
-                     color = NUnLowered / N, size = N),
-                 real.geom = geom_point) +
-     geom_polygon(aes(x = long, y = lat, group = group), data = mapdata,
-                  color = "black", fill = NA) +
-    coord_map(xlim=c(-5,1), ylim=c(53,56)) +
-    theme_nothing(legend = TRUE) +
-    theme(plot.title = element_text(size = 16, vjust = 2),
-          plot.margin = unit(c(0.5, 0.1, 0.1, 0.1), "in")) +
-    ggtitle("/u/-lowering in the North of England") +
-    scale_color_gradientn("Percent not lowered",
-                          colours=brewer.pal(6, "RdYlGn")) +
-    scale_size_area(max_size=4, guide = FALSE)
+
+# write.table(as.data.frame(u.plot.data), 
+#              file="tmp.csv", quote=TRUE, sep=",", 
+#                row.names=FALSE, qmethod="double")
+
+ourTitle <- "Aaa"
+ourSubtitle <- "Bbb"
+myColors <- c("#2FBFD5","#3F4FFF", "#FF2F2F", "#68FF5F","#FF982F", "#D5FF2F" )
+
+
+svgDest <- "u.svg"
+gridsvg(svgDest,exportJS="inline",
+        addClasses=TRUE,width=10,height=7.5,
+        xmldecl='<?xml version="1.0" encoding="UTF-8"?>')
+ggplot(rukruk) + 
+  aes_string(x = "Longitude", y = "Latitude", size="M") +
+  geom_tooltip(aes(tooltip = paste0(
+    "<b>", Town,
+    ":</b><br />",
+    UnLoweredWds),
+    color=region, size = M),
+    real.geom = geom_point) +  
+  geom_point(shape=21) +  
+  ggtitle("Bezdarbs un MAT9 rezult\u0101ti pa\u0161vald\u012Bb\u0101s") + 
+  theme(
+    legend.title=element_text(size=12),  
+    panel.background = element_rect(fill = 'white', colour = 'darkgreen'),
+#    plot.title = element_text(size = 20, face = "bold", colour = "black", vjust = -1),
+    panel.grid.minor = element_line(colour="lightgray", size=0.5, linetype="dotted"),
+    panel.grid.major = element_line(colour="black", size=0.5, linetype="dotted"),
+    plot.margin = unit(c(0.5, 0.1, 0.1, 0.1), "in"),
+    plot.title = element_text(size = 16, vjust = 2, face = "bold"),
+           plot.margin = unit(c(0.5, 0.1, 0.1, 0.1), "in")
+  ) +
+#     scale_color_gradientn("Percent not lowered",
+#                           colours=brewer.pal(6, "RdYlGn")) +
+  scale_fill_manual(values=myColors, name="Re\u0123ioni",
+                    labels=c("Kurzeme", 
+                             "Latgale", 
+                             "R\u012Bga",
+                             "Pier\u012Bga",
+                             "Vidzeme",
+                             "Zemgale"),
+                    guide = guide_legend(override.aes = list(size = 7))) +  
+  
+    scale_size_area(max_size=16, guide = FALSE)
 grid.script(jscript)
 dev.off()
