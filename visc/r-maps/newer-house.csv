@@ -1,5 +1,9 @@
-TownCode,Town,Latitude,Longitude,How,House,Clouds,About,Drought,M,region
-1.1,Lowick,55.649,-1.977,uu,uu,uu,uu,uu,5,Vidzeme
-1.2,Embleton,55.4959,-1.6354,uu,uu,uu,uu,uu,10,Latgale
-10.3,Keelby,53.566667,-0.25,uu,uu,uu,uu,uu,15,Kurzeme
-0.2,Ronague,54.12,-4.686,eu,aeu,euu,euu,ou,20,Zemgale
+TownCode,Town,Latitude,Longitude,How,House,Clouds,About,Drought,M,region,unemployment
+1.1,Lowick,55.649,-1.977,uu,uu,uu,uu,uu,5,Vidzeme,20
+1.2,Embleton,55.4959,-1.6354,uu,uu,uu,uu,uu,10,Latgale,10
+10.3,Keelby,53.566667,-0.25,uu,uu,uu,uu,uu,15,Kurzeme,4
+0.2,Ronague,54.12,-4.686,eu,aeu,euu,euu,ou,20,Zemgale,5
+3.1,Ādaži,53.00,-3.00,eu,aeu,euu,euu,ou,20,Pierīga,7
+3.2,Rīga,54.00,-1.00,eu,aeu,euu,euu,ou,20,Rīga,24
+
+

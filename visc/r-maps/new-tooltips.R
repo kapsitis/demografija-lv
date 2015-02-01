@@ -1,98 +1,22 @@
 ## http://aaronecay.com/blog/2014/02/tooltips-in-ggplot/
 
-if (!"mapdata" %in% installed.packages()) install.packages("mapdata")
 if (!"dplyr" %in% installed.packages()) install.packages("dplyr")
-if (!"ggmap" %in% installed.packages()) install.packages("ggmap")
 
-
-library(mapdata)
 library(ggplot2)
-library(dplyr)
-library(stringr)
 library(proto)
 library(gridSVG)
-library(ggmap)
 library(grid)
-library(RColorBrewer)
-
-# uu, 
-# aʊ = au
-# ʊ = u
-# üː = ueue
-# æə = aee
-# ʊ = u
-# ɔʊ = ou
-# ᵊuu = euu
-# ᶷuu = oouu
-# ᵓuu = ouu
-# aː = aa
-# ɔː = oo
-# əʊ = eu
-# ʌʊ = hau
-# æʊ = aeu
-# ɛa = ia
-# ɛə = ie
-# ɛː = ii
-# ɒʊ = ao
-
 
 setwd("/home/st/demografija-lv/visc/r-maps/")
 u.data <- read.csv("newer-house.csv")
 u.data[50:55,]
 
-conservative.vowels <- c("euu","ouu","oouu","uu",
-                         "u") ## upsilon only in "drought"
-
-singleSummary <- function(vowels, word) {
-    s <- sum(vowels %in% conservative.vowels)
-    if (s > 1) {
-        return (paste0(word, " (x", s, ")"))
-    } else if (s == 1) {
-        return (word)
-    } else {
-        return (NA)
-    }
-}
-summaryString <- function(house, how, about, clouds, drought) {
+summaryString <- function(label1,value1) {
     r <- ""
-    x <- singleSummary(house, "House")
-    if (!is.na(x)) r <- paste0(r, x, "<br />")
-
-    x <- singleSummary(how, "How")
-    if (!is.na(x)) r <- paste0(r, x, "<br />")
-
-    x <- singleSummary(about, "About")
-    if (!is.na(x)) r <- paste0(r, x, "<br />")
-
-    x <- singleSummary(clouds, "Clouds")
-    if (!is.na(x)) r <- paste0(r, x, "<br />")
-
-    x <- singleSummary(drought, "Drought")
-    if (!is.na(x)) r <- paste0(r, x, "<br />")
-
-    ## Strip a trailing <br />
-    r <- str_sub(r, end = -7)
-    r <- ifelse(r == "", "(none)", r)
+    r <- paste0(r, "b",label1,":", value1)
     return (r)
 }
 
-u.data <- tbl_df(u.data)
-u.plot.data <- u.data %>%
-    group_by(Town, Latitude, Longitude,region) %>%
-    summarise(NUnLowered =
-              sum(House %in% conservative.vowels,
-                  How %in% conservative.vowels,
-                  About %in% conservative.vowels,
-                  Clouds %in% conservative.vowels,
-                  Drought %in% conservative.vowels),
-              M = sum(M),
-              UnLoweredWds = summaryString(
-                 House, How, About, Clouds, Drought),
-              N = n())
-u.plot.data$N <- u.plot.data$N * 5
-head(as.data.frame(u.plot.data[1:4,]))
-
-mapdata <- map_data("worldHires", "UK")
 
 geom_tooltip <- function (mapping = NULL, data = NULL, stat = "identity",
                           position = "identity", real.geom = NULL, ...) {
@@ -129,7 +53,8 @@ rukruk <- read.table(
               "NUnLowered",
               "M",
               "UnLoweredWds",
-              "N"),
+              "N",
+              "unemployment"),
   skip=1)
 
 
@@ -242,14 +167,19 @@ for (i = 0; i < points.length; i++) {
 '
 
 
-# write.table(as.data.frame(u.plot.data), 
-#              file="tmp.csv", quote=TRUE, sep=",", 
-#                row.names=FALSE, qmethod="double")
 
 ourTitle <- "Aaa"
 ourSubtitle <- "Bbb"
-myColors <- c("#2FBFD5","#3F4FFF", "#FF2F2F", "#68FF5F","#FF982F", "#D5FF2F" )
+myColors <- c("#2FBFD5",
+              "#3F4FFF", 
+              "#68FF5F",
+              "#FF2F2F", 
+              "#FF982F", 
+              "#D5FF2F" )
 
+
+rukruk$note <- paste0("Bezdarbs: ",rukruk$unemployment)
+#rukruk$theColor <- sample(myColors,nrow(rukruk), replace=TRUE)
 
 svgDest <- "u.svg"
 gridsvg(svgDest,exportJS="inline",
@@ -260,7 +190,7 @@ ggplot(rukruk) +
   geom_tooltip(aes(tooltip = paste0(
     "<b>", Town,
     ":</b><br />",
-    UnLoweredWds),
+    note),
     color=region, size = M),
     real.geom = geom_point) +  
   geom_point(shape=21) +  
@@ -268,20 +198,17 @@ ggplot(rukruk) +
   theme(
     legend.title=element_text(size=12),  
     panel.background = element_rect(fill = 'white', colour = 'darkgreen'),
-#    plot.title = element_text(size = 20, face = "bold", colour = "black", vjust = -1),
     panel.grid.minor = element_line(colour="lightgray", size=0.5, linetype="dotted"),
     panel.grid.major = element_line(colour="black", size=0.5, linetype="dotted"),
     plot.margin = unit(c(0.5, 0.1, 0.1, 0.1), "in"),
     plot.title = element_text(size = 16, vjust = 2, face = "bold"),
            plot.margin = unit(c(0.5, 0.1, 0.1, 0.1), "in")
   ) +
-#     scale_color_gradientn("Percent not lowered",
-#                           colours=brewer.pal(6, "RdYlGn")) +
-  scale_fill_manual(values=myColors, name="Re\u0123ioni",
+  scale_colour_manual(values=myColors, name="Re\u0123ioni",
                     labels=c("Kurzeme", 
                              "Latgale", 
-                             "R\u012Bga",
                              "Pier\u012Bga",
+                             "R\u012Bga",
                              "Vidzeme",
                              "Zemgale"),
                     guide = guide_legend(override.aes = list(size = 7))) +  
