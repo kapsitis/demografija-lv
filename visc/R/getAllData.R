@@ -56,11 +56,11 @@ examTypes <- list(ANG9 = "9.kl. angļu valoda",
 
 indicatorsShort <- list(UnemploymentRate = "bezdarbs",
                         DependencyRatio = "demogr.slodze", 
-                        PopulationChangePerYear = "iedz.sk.izmaiņa",
+                        PopulationChangePerYear = "iedz.sk.izmai\u0146a",
                         PerCapitaIncomeTax = "IIN uz 1 iedz.",
-                        ExpenditurePerStudent = "1 skolēna izmaksas",
-                        PerCapitaRealEstateTax = "NĪ uz 1 iedz.",
-                        FemaleRatio = "sieviešu %")
+                        ExpenditurePerStudent = "1 skol\u0113na izmaksas",
+                        PerCapitaRealEstateTax = "N\u012AN uz 1 iedz.",
+                        FemaleRatio = "sievie\u0161u %")
 
 xScales <- list(
   UnemploymentRate = scale_x_continuous(
@@ -89,6 +89,8 @@ xScales <- list(
     minor_breaks=seq(48.5,55.5,by=1))
 )
 
+csvEncoding <- ""
+
 
 ### Read social indicators from RAIM.gov.lv datasets (years 2009-2013)
 getSocialIndicators <- function(path) {
@@ -102,7 +104,8 @@ getSocialIndicators <- function(path) {
       sep=",",
       row.names=NULL,  
       col.names=c("Municipality",factorNames),
-      skip=1
+      skip=1,
+      fileEncoding=csvEncoding
     )
     pathSegments <- strsplit(filename,"/")[[1]]
     bareName <- pathSegments[length(pathSegments)]
@@ -147,7 +150,8 @@ getCentralizedData <- function(path, yyyy) {
                   "dzimums","valdes_kod","klase",
                   "urban","tips", "valoda",
                   "LauksVisiVieni","gads"),
-      skip=1
+      skip=1,
+      fileEncoding=csvEncoding
     )   
     return(dum)
   })
@@ -160,7 +164,8 @@ getCentralizedData <- function(path, yyyy) {
     col.names=c("Num","municipality","region",
                 "jobless","income",
                 "schools","visc_code"),
-    skip=1)
+    skip=1,
+    fileEncoding=csvEncoding)
   
   
   visi_dati <- merge(visc_exams, sbr, 
@@ -196,7 +201,8 @@ getSchoolPopulations <- function(path) {
                 "class03", "class04", "class05", 
                 "class06", "class07", "class08", 
                 "class09"),
-    skip=1)
+    skip=1,
+    fileEncoding=csvEncoding)
   return(schoolPop)
 }
 
@@ -233,7 +239,8 @@ getRegionData <- function(path) {
     sep=",",
     row.names=NULL,  
     col.names=c("municipality","region","schools"),
-    skip=1)
+    skip=1,
+    fileEncoding=csvEncoding)
   return(sbr)
 }
 
@@ -248,7 +255,8 @@ getSkolaPasvaldiba <- function(path, theFile) {
     sep=",",
     row.names=NULL,  
     col.names=c("Skola","Pasvaldiba"),
-    skip=1)
+    skip=1,
+    fileEncoding=csvEncoding)
   return(skolaPasvaldiba)
 }
 
@@ -283,7 +291,8 @@ getViisDati <- function(path) {
                 "valoda",
                 "lat",
                 "lng"),
-    skip=1, comment.char="#")
+    skip=1, comment.char="#",
+    fileEncoding=csvEncoding)
   return(viisDati)
 }
 
@@ -297,7 +306,7 @@ getRenamings <- function(path) {
     col.names=c("municipality",
                 "school",
                 "renamed"),
-    skip=1, comment.char="#", na=FALSE)
+    skip=1, comment.char="#", na=FALSE,fileEncoding=csvEncoding)
   return(renamings)
   
 }
@@ -334,7 +343,8 @@ getNonCentralizedDF <- function(path) {
       sep=",",
       row.names=NULL,  
       col.names=c("municipality","school","result"),
-      skip=1
+      skip=1,
+      fileEncoding=csvEncoding
     )
     pathSegments <- strsplit(filename,"/")[[1]]
     bareName <- pathSegments[length(pathSegments)]
