@@ -18,7 +18,7 @@ library(shiny)
 library(stats)
 
 
-dataPath <- "/home/st/demografija-lv/visc/sampledata"
+dataPath <- "/home/kalvis/demografija-lv/visc/sampledata"
 
 setwd(dataPath)
 source("../R/getAllData.R")
@@ -199,7 +199,7 @@ theSubject <- "MAT9"
   
 #  for (factor in factorNames) {  
 #  for (factor in "UnemploymentRate") {
-factor <- "PopulationChangePerYear"
+factor <- "FemaleRatio"
     
     initYear <- list(UnemploymentRate = 2010,
                      DependencyRatio = 2010, 
