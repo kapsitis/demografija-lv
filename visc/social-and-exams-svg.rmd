@@ -1,0 +1,18 @@
+Pašvaldību VISC/RAIM dati burbuļu diagrammās
+----------
+  
+  [Uz sākumu](../index.html)
+
+Šis iecerēts kā papildinājums rakstam [Sociālie rādītāji un centralizēto eksāmenu rezultāti pašvaldībās](social-issues-and-exams-in-municipalities.html). Te ievietosim dažus SVG vektorgrafikas attēlus, kuri ļauj pamatīgāk apskatīt MAT9 (9.kl. necentralizētā matemātikas eksāmena rezultātus kombinācijā ar dažādiem sociālajiem indikatoriem pašvaldībās). SVG vektorgrafikas attēli ir interaktīvi - tie parāda pašvaldības nosaukumu, ja burbulītim uzbrauc ar peli. 
+
+Šie attēli iegūti kombinējot VISC (Valsts Izglītības Satura centrs) un RAIM (Reģionālās attīstības indikatoru modulis) datu kopas. Ņemot vērā to, ka RAIM dati ir apkopoti pa pašvaldībām, bet VISC 9.kl. eksāmenu dati - pa skolām, pašvaldībā esošās skolas tiek grupētas (turklāt cenšamies grupēt tā, lai visā pašvaldībā aprēķinātais eksāmena vidējais rezultāts ņemtu vērā katras skolas relatīvo lielumu). Detaļas, kā veikti mūsu novērtējumi doti "Sociālo rādītāju" rakstā.
+
+1. [MAT9 un bezdarbs](http://www.demografija.lv/visc/sampledata/temp2/MAT9-UnemploymentRate-2014.svg)
+2. [MAT9 un demogrāfiskā slodze](http://www.demografija.lv/visc/sampledata/temp2/MAT9-DependencyRatio-2014.svg)
+3. [MAT9 un iedzīvotāju skaita izmaiņa gadā uz 1000 iedzīvotājiem](http://www.demografija.lv/visc/sampledata/temp2/MAT9-PopulationChangePerYear-2014.svg)
+4. [MAT9 un IIN uz 1 iedz.](http://www.demografija.lv/visc/sampledata/temp2/MAT9-PerCapitaIncomeTax-2014.svg)
+5. [MAT9 un izdevumi uz 1 skolēnu](http://www.demografija.lv/visc/sampledata/temp2/MAT9-ExpenditurePerStudent-2014.svg)
+6. [MAT9 un NĪN uz 1 iedzīvotāju](http://www.demografija.lv/visc/sampledata/temp2/MAT9-PerCapitaRealEstateTax-2014.svg)
+7. [MAT9 un sieviešu īpatsvars](http://www.demografija.lv/visc/sampledata/temp2/MAT9-FemaleRatio-2014.svg)
+
+
