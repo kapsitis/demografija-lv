@@ -1,0 +1,33 @@
+body {
+  font-family: Sans-serif;
+}
+h1 {
+  font-weight: normal;
+  font-size: 150%;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 120%;
+}
+
+
+table.content {
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+table.content td {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  padding: 10px;
+}
+
+table.content th {
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  text-align: center; 
+  background-color: #cccccc;
+}
