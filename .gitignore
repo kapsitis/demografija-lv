@@ -1,6 +1,7 @@
 .cache
 */.Rhistory
 */*.md
+.DS_Store
 /bin
 /shiny/math/*
 /visc/r-maps/*.svg
