@@ -1,5 +1,11 @@
 # Set this path to the one that you are using
-setwd("/home/st/java-eim/java-eim-parent/src/site/resources/R/dataproc/demography/")
+#setwd("/home/st/java-eim/java-eim-parent/src/site/resources/R/dataproc/demography/")
+
+
+library("rstudioapi")
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+
 
 # needed for getURL()
 if (!"RCurl" %in% installed.packages()) install.packages("RCurl")

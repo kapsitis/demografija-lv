@@ -1,5 +1,5 @@
 # Set this path to the one that you are using
-setwd("/home/student/java-eim/java-eim-parent/src/site/resources/R/dataproc/demography/")
+# setwd("/home/student/java-eim/java-eim-parent/src/site/resources/R/dataproc/demography/")
 
 if (!"plotrix" %in% installed.packages()) install.packages("plotrix")
 if (!"Unicode" %in% installed.packages()) install.packages("Unicode")
@@ -7,15 +7,24 @@ if (!"RCurl" %in% installed.packages()) install.packages("RCurl")
 library("plotrix")
 library("Unicode")
 library("RCurl")
+library("rstudioapi")
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-urlPrefix = "https://docs.google.com/spreadsheet/pub?key=0Asrw_"
-urlKey = "eAzHG5ydGp5X014eG5LbWVyVnBocW5jUU1yZ0E"
-urlSuffix = "&single=true&gid=0&output=csv"
 
-csvUrl <- paste0(urlPrefix,urlKey,urlSuffix)  
-print(paste0("Downloading from URL ", csvUrl))
-csvFile <- getURL(csvUrl, ssl.verifypeer=FALSE)
-df <- read.csv(textConnection(csvFile), encoding="UTF-8")
+#urlPrefix = "https://docs.google.com/spreadsheet/pub?key=0Asrw_"
+#urlKey = "eAzHG5ydGp5X014eG5LbWVyVnBocW5jUU1yZ0E"
+#urlSuffix = "&single=true&gid=0&output=csv"
+#csvUrl <- paste0(urlPrefix,urlKey,urlSuffix)  
+#print(paste0("Downloading from URL ", csvUrl))
+#csvFile <- getURL(csvUrl, ssl.verifypeer=FALSE)
+
+
+
+
+#df <- read.csv(textConnection(csvFile), encoding="UTF-8")
+df <- read.table("Taut-VPd-2013-07-01.csv", header=TRUE, sep=",")
+
+
 print(paste0("Total rows read: ",nrow(df)))
 
 # Order in decreasing order by # of noncitizens

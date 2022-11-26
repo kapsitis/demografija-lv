@@ -1,6 +1,30 @@
 # Set this path to the one that you are using
-setwd("/home/student/java-eim/java-eim-parent/src/site/resources/R/dataproc/demography/")
-source("noncit-load.R")
+#setwd("/home/student/java-eim/java-eim-parent/src/site/resources/R/dataproc/demography/")
+#source("noncit-load.R")
+
+
+
+
+library("rstudioapi")
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+
+
+#source("noncit-load.R")
+dsets <- c("2007-01-01", "2007-07-01", "2008-01-01", "2008-07-01", 
+           "2009-01-01", "2009-07-01", "2010-01-01", "2010-07-01", 
+           "2011-01-01", "2011-07-01", "2012-01-01", "2012-07-01", 
+           "2013-01-01", "2013-07-01")
+
+getYear <- function(x) {
+  ddd <- as.numeric(as.Date(x) - as.Date("2007-01-01"))
+  round(2007+ddd/365.25, digits=2)
+}
+
+df <- read.table("DzGads-VPd-2007_2013.csv", head=TRUE, sep=",")
+
+
+
 
 if (!"pyramid" %in% installed.packages()) install.packages("pyramid")
 library(pyramid)
